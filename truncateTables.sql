@@ -1,0 +1,6 @@
+-- Truncate tables
+TRUNCATE TABLE Teaching;
+TRUNCATE TABLE BelongsTo;
+TRUNCATE TABLE ExtraLesson;
+TRUNCATE TABLE Users;
+TRUNCATE TABLE Class;
