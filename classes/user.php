@@ -28,11 +28,11 @@ public function getUsername()
 }
 public function getFirstName()
 {
-  return $this->first_name;
+  return $this->fname;
 }
 public function getLastName()
 {
-  return $this->last_name;
+  return $this->lname;
 }
 
 public function serialize()
@@ -65,7 +65,7 @@ public function unserialize($data)
     }
 
     private function emptyInput() {
-        $result;
+        
 
         if (empty($this->fname) || empty($this->lname) || empty($this->pwd) || empty($this->pwdConf) || empty($this->phone)){
             $result = false;
@@ -76,7 +76,7 @@ public function unserialize($data)
     }
      
     private function invalidInput(){
-        $result;
+        
         if(!preg_match("/^[a-zA-z]*$/", $this->fname) || !preg_match("/^[a-zA-z]*$/",$this->lname) || !preg_match("/^[0-9]*$/", $this->phone))
             return false;
 
@@ -118,7 +118,7 @@ public function unserialize($data)
         }
 
         $database = new Dbh();
-        $sqlResult;
+        
 
         // Select the stored proc and exexute
         $sql = "CALL find_user(:fname, :lname, :phone)";
@@ -143,8 +143,7 @@ public function unserialize($data)
                 $sqlResult->closeCursor();
 
                 // Here we register the user
-                $sqlRegister;
-                $hashedPwd;
+                
 
                 // hash user password before adding to database.
                 $hashedPwd = password_hash($this->pwd, PASSWORD_BCRYPT);
@@ -179,7 +178,7 @@ public function unserialize($data)
 
     //Connect to database using handler
     $database = new Dbh();
-    $sqlResult;
+    
 
     // Select the stored proc and exexute
     $sql = "CALL get_user(:username)";
