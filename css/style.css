@@ -65,7 +65,7 @@ header h1 a, header .current a{
 
 /*Generally on the a in the header when you move the mouse over them*/
 header a:hover{
-    color:whitesmoke;
+    color:#2B7A78;
     font-weight:bold;
 }
 
