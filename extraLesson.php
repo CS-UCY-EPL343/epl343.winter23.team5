@@ -135,7 +135,7 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
         ];
 
         if ($index1 == -1){
-            $day1 = "Null";
+            $day1 = "";
             $time1 = "";
         }
         else{
