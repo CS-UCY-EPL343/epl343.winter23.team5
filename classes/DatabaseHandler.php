@@ -1,7 +1,7 @@
 <?php 
 
 class Dbh {
-
+    
     private $host = 'localhost';
     private $dbname = 'tutoring';
     private $username = 'root';
