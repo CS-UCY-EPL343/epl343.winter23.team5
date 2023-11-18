@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 10px;
+      background: #2b7a78;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .navigation {
+      display: flex;
+    }
+
+    .navigation a {
+      position: relative;
+      font-size: 1.1em;
+      color: #fff; /* Change text color to white */
+      text-decoration: none;
+      font-weight: 500;
+      margin-right: 50px; /* Adjusted to move the "Home" button to the right */
+    }
+
+    .navigation a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      background: #fff; /* Change underline color to white */
+      border-radius: 5px;
+      transform-origin: right;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .5s;
+    }
+
+    .navigation a:hover::after {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    table {
+      margin-top: 85px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    select, input[type="button"] {
+      padding: 8px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+
+    <form id="lessonForm">
+      <label for="lesson">Select a Lesson:</label>
+      <select id="lesson" name="lesson">
+        <option value="math">Mathematics</option>
+        <option value="physics">Physics</option>
+        <option value="biology">Biology</option>
+        <!-- Add more options for other lessons -->
+      </select>
+
+      <label for="level">Select a Level:</label>
+      <select id="level" name="level">
+        <option value="1st lyceum">1st lyceum</option>
+        <option value="2nd lyceum">2nd lyceum</option>
+        <option value="3rd lyceum">3rd lyceum</option>
+        <!-- Add more options for other levels -->
+      </select>
+
+      <input type="button" value="Generate Calendar" onclick="generateCalendar()">
+          </form>
+          
+    <nav class="navigation">
+      <a href="index.html">Home Page</a>
+      <A href="login.html">Login</A>
+    </nav>
+
+
+  </header>
+
+  <table id="calendarTable">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+    </thead>
+    <tbody id="calendarBody">
+      //Rows will be generated here
+    </tbody>
+  </table>
+
+  <script>
+    function generateCalendar() {
+      //backend will implement functionality
+    }
+  </script>
+</body>
+</html>
