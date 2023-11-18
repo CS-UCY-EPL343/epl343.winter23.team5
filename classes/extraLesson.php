@@ -5,7 +5,7 @@ if ($_SESSION['teacher'] == false) {
     exit();
 }
 
-if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"]) && isset($_POST["timeTo"]) && isset($_POST["submit"])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     include 'user.php';
     include 'DatabaseHandler.php';
@@ -15,7 +15,8 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
     function checkData($data)
     {
         if (empty($data)) {
-            header("Location: temp.php");
+            $_SESSION['message'] = 'Empty Fields!<br>Failed Submission';
+            header("Location: extraLesson.php");
             exit();
         }
         $data = trim($data);
@@ -27,8 +28,8 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
     $timeTo = checkData($_POST["timeTo"]);
 
     if ($timeFrom >= $timeTo) {
-        header("Location: errorTime.php");
-        $_SESSION['timeError'] = true;
+        $_SESSION['message'] = 'Start time must be before finish time!<br>Failed Submission';
+        header("Location: extraLesson.php");
         exit();
     }
 
@@ -41,8 +42,8 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
     $classes = $_SESSION['classes'];
 
     if ($class < 1 || $class > count($classes)) {
-        header("Location: errorClass.php");
-        $_SESSION['classError'] = true;
+        $_SESSION['message'] = 'You do not teach this class!<br>Failed Submission';
+        header("Location: extraLesson.php");
         exit();
     }
 
@@ -53,9 +54,8 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
 
 
 
-
-    header("Location: ELsuccess.php");
-    $_SESSION['ELsuccess'] = true;
+    $_SESSION['message'] = 'Submission Successful!';
+    header("Location: extraLesson.php");
     exit();
 }
 
@@ -78,6 +78,11 @@ if (isset($_POST["class"]) && isset($_POST["date"]) && isset($_POST["timeFrom"])
         Finish Time: <input type="time" name="timeTo"><br>
         <input type="submit" name="submit" value="submit">
     </form>
+    <?php
+    if (isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+    }
+    ?>
     <?php
     include 'user.php';
     include 'DatabaseHandler.php';
