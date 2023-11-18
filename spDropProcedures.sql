@@ -33,3 +33,6 @@ DROP PROCEDURE IF EXISTS get_all_classes;
 
 -- Drop delete_class procedure
 DROP PROCEDURE IF EXISTS delete_class;
+
+-- Drop delete_user procedure
+DROP PROCEDURE IF EXISTS delete_user;
