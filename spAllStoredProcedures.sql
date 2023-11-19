@@ -232,7 +232,7 @@ BEGIN
     FROM Class;
 END //
 
-DELIMITER;
+DELIMITER ;
 
 
 
@@ -261,6 +261,49 @@ BEGIN
     DELETE u  
     FROM Users u 
     WHERE u.username=p_username;
+END //
+
+DELIMITER ;
+
+-- CREATE PROCEDURE get_unenrolled
+DELIMITER //
+
+CREATE PROCEDURE get_unenrolled()
+
+BEGIN
+    SELECT *
+    FROM Users u 
+    WHERE u.isEnrolled=0 ;
+END //
+
+DELIMITER ;
+
+
+-- CREATE PROCEDURE enroll
+DELIMITER //
+
+CREATE PROCEDURE enroll(IN p_username char(36))
+
+BEGIN
+    UPDATE Users u 
+    SET u.isEnrolled=1
+    WHERE u.username=p_username ;
+END //
+
+DELIMITER ;
+
+-- CREATE PROCEDURE show_extra_lesson
+DELIMITER //
+
+CREATE PROCEDURE show_extra_lesson(IN p_username char(36))
+
+BEGIN
+    SELECT c.CName,c.CNumber,el.ELDate,el.ELTime 
+    FROM Users u
+    INNER JOIN BelongsTo b ON u.UserID=b.UserID
+    INNER JOIN Class c ON c.CID=b.CID
+    INNER JOIN ExtraLesson el ON el.CID=c.CID 
+    WHERE u.username=p_username AND el.ELDate>=CURDATE();
 END //
 
 DELIMITER ;
