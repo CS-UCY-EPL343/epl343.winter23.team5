@@ -8,8 +8,7 @@ CREATE PROCEDURE add_class(
     IN p_CDays char(7),
     IN p_TimeForFirstDay char(8),
     IN p_TimeForSecondDay char(8),
-    IN p_NextYears tinyint,
-    OUT p_CID tinyint
+    IN p_NextYears tinyint
 )
 BEGIN
     INSERT INTO Class (
@@ -31,7 +30,7 @@ BEGIN
         p_TimeForSecondDay,
         p_NextYears
     );
-    SELECT LAST_INSERT_ID() INTO p_CID;
+    SELECT LAST_INSERT_ID() ;
 END //
 
 DELIMITER ;
