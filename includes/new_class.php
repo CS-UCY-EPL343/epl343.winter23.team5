@@ -1,7 +1,7 @@
 <?php
 session_start();
 /*
-if (!isset($_SESSION['type']) || $_SESSION['type'] == "Admin"){
+if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
   header("Location: index.html?error");
   exit("Not supposed to be here...");
 }
@@ -80,7 +80,7 @@ if(isset($_POST["create_class"])){
 if(isset($_POST["teachers_list"])){
   // Retrieve form data using $_POST
   require "../classes/DatabaseHandler.php";
-  $database = new DBh();
+  $database = new Dbh();
 
   // Select sp and exec
   $sql = "CALL fetch_teachers()";
