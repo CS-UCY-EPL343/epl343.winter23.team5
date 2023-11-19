@@ -10,13 +10,10 @@
     <title>Document</title>
 </head>
 
-<body>
-    <form action="includes/login.inc.php" method="POST">
+<form action="includes/login.inc.php" method="POST">
         Fname: <input type="text" name="username" require><br>
         Passowrd: <input type="password" name="pwd" require><br>
         <input type="submit" name="submit" value="submit">
     </form>
-
-</body>
 
 </html>
