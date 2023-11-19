@@ -9,7 +9,7 @@ CREATE PROCEDURE update_class(
     IN p_CDays char(7),
     IN p_TimeForFirstDay char(8),
     IN p_TimeForSecondDay char(8),
-    IN p_NextYears bit
+    IN p_NextYears tinyint
 )
 BEGIN
     UPDATE Class
