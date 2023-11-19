@@ -7,4 +7,4 @@ BEGIN
     FROM Class;
 END //
 
-DELIMITER;
+DELIMITER ;
