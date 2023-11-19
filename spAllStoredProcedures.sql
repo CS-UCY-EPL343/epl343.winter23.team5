@@ -106,7 +106,7 @@ CREATE PROCEDURE find_teaching_classes(
     IN p_username char(36)
 )
 BEGIN
-SELECT c.CID, c.CName, c.SchoolYear, c.CNumber, c.CDays, c.TimeForFirstDay, c.TimeForSecondDay
+SELECT c.*
 FROM Class c
 INNER JOIN Teaching t ON t.CID=c.CID
 INNER JOIN Users u ON u.UserID=t.UserID
@@ -157,8 +157,7 @@ CREATE PROCEDURE add_class(
     IN p_CDays char(7),
     IN p_TimeForFirstDay char(8),
     IN p_TimeForSecondDay char(8),
-    IN p_NextYears tinyint,
-    OUT p_CID tinyint
+    IN p_NextYears tinyint
 )
 BEGIN
     INSERT INTO Class (
@@ -180,7 +179,7 @@ BEGIN
         p_TimeForSecondDay,
         p_NextYears
     );
-    SELECT LAST_INSERT_ID() INTO p_CID;
+    SELECT LAST_INSERT_ID() ;
 END //
 
 DELIMITER ;
