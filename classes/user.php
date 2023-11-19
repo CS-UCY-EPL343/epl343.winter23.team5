@@ -22,42 +22,42 @@ class User implements Serializable{
 
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-public function getUsername()
-{
-  return $this->username;
-}
-public function getFirstName()
-{
-  return $this->fname;
-}
-public function getLastName()
-{
-  return $this->lname;
-}
+    public function getUsername(){
+        return $this->username;
+    }
 
-public function serialize()
-{
-  return serialize([
-    'username' => $this->username,
-    'fname' => $this->fname,
-    'lname' => $this->lname,
-    'phone' => $this->phone,
-    'pwd'   => $this->pwd,
-    'pwdConf'=> $this->pwdConf,
-    'type' => $this->type
-  ]);
-}
-public function unserialize($data)
-{
-  $data = unserialize($data);
-  $this->username = $data['username'];
-  $this->fname = $data['fname'];
-  $this->lname = $data['lname'];
-  $this->phone = $data['phone'];
-  $this->pwd = $data['pwd'];
-  $this->pwdConf = $data['pwdConf'];
-  $this->type = $data['type'];
-}
+    public function getFirstName(){
+        return $this->fname;
+    }
+
+    public function getLastName(){
+        return $this->lname;
+    }
+
+    public function serialize(){
+
+        return serialize([
+            'username' => $this->username,
+            'fname' => $this->fname,
+            'lname' => $this->lname,
+            'phone' => $this->phone,
+            'pwd'   => $this->pwd,
+            'pwdConf'=> $this->pwdConf,
+            'type' => $this->type
+        ]);
+    }
+
+    public function unserialize($data){
+
+        $data = unserialize($data);
+        $this->username = $data['username'];
+        $this->fname = $data['fname'];
+        $this->lname = $data['lname'];
+        $this->phone = $data['phone'];
+        $this->pwd = $data['pwd'];
+        $this->pwdConf = $data['pwdConf'];
+        $this->type = $data['type'];
+    }
 
 //////////////////////////////////// Checks //////////////////////////////////////////////////////////
     private function confirm_pwd() {
@@ -66,12 +66,11 @@ public function unserialize($data)
 
     private function emptyInput() {
         
-        if (empty($this->fname) || empty($this->lname) || empty($this->pwd) || empty($this->pwdConf) || empty($this->phone)){
-            $result = false;
+        if (isset($this->fname) && isset($this->lname) && isset($this->pwd) && isset($this->pwdConf) && isset($this->phone)){
+            return true;
         }else{ 
-            $result = true;
+            return false;
         }
-        return $result;
     }
      
     private function invalidInput(){
@@ -83,11 +82,11 @@ public function unserialize($data)
     }
 
     private function emptyLogin(){
-        if(empty($this->username) || empty($this->pwd)){
-            return true;
+        if(isset($this->username) && isset($this->pwd)){
+            return false;
         }
 
-        return false;
+        return true;
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,6 +159,7 @@ public function unserialize($data)
         // Close previous query
         $sqlResult->closeCursor();
         echo "User '{$this->username}' has been registered.\n";
+        header("location: ../index.php?error=none");
   }
 ////////////////////////////////////end of register code//////////////////////////////////////
 
@@ -185,7 +185,8 @@ public function unserialize($data)
 
     // If the query has a problem exit.
     if($sqlResult == false){
-        $sqlResult = null;
+        $sql = null;
+        $sqlResult->closeCursor();
         header("location: ../index.php?error=stmtfailed");
         exit();
     }else{
@@ -196,6 +197,7 @@ public function unserialize($data)
         if($result == false) {
 
             // echo "user not exists"
+            $sqlResult->closeCursor();
             header("location: ../index.php?error=usernotexists");
             exit();
 
@@ -207,9 +209,7 @@ public function unserialize($data)
             if($checkPwd == false){
 
                 $sql = null;
-                //echo '<pre>';
-                //print_r($result[0]['Username']);
-                //echo '</pre>';
+                $sql = null;
                 header("location: ../index.php?error=wrongpassword");
                 exit();
 
@@ -234,7 +234,7 @@ public function unserialize($data)
                         $_SESSION['type'] = 'Admin';
 
                         // Send to Admin page.
-                        header("location: ../admin/dashboard.php");
+                        header("location: ../pages/adminView.php");
                         
                     } elseif($result['UType'] == 1) {
 
@@ -245,7 +245,9 @@ public function unserialize($data)
                         $_SESSION['type'] = 'Teacher';
 
                         // Send to Teacher page.
-                        header("location: ../user/teacherdashboard.php");
+                        //header("location: ../user/teacherdashboard.php");
+                        // Test homepage
+                        header("location: ../pages/teacherView.php");
 
                     }elseif($result['UType'] == 0){
 
@@ -256,13 +258,14 @@ public function unserialize($data)
                         $_SESSION['type'] = 'Student';
 
                         // Send to Student page.
-                        header("location: ../user/studentdashboard.php");
+                        header("location: ../pages/studenView.php");
                         
                     }
                 }else{
 
                     // If not enrolled display error.
                     $sql = null;
+                    $sqlResult->closeCursor();
                     header("location: ../index.php?error=notenrolled");
 
                 }
@@ -279,15 +282,15 @@ public function unserialize($data)
         $database = new Dbh();
     
         // Select the stored proc and exexute
-        $sql = "CALL delete_user(:fname, :lname)";
-        $params = [':fname' => $this->fname, ':lname' => $this->lname];
+        $sql = "CALL delete_user(:username)";
+        $params = [':username' => $this->username];
         $sqlResult = $database->executeQuery($sql, $params);
 
         // Clear query and close cursor
         $sql = null;
         $sqlResult->closeCursor();
 
-        header("location: ../index.php?error=accountdeleted");
+        header("location: ../adminView.php");
         exit();
   }
 
@@ -308,29 +311,71 @@ class Teacher extends User {
 class Admin extends User {
     // Admin specific content.
 
-    public function deleteOtherAccount($username) {
+    public function deleteOtherAccount($name) {
 
         // Check that admin is not being deleted.
-        if($this->username == $username){
-            header("location: ../deleteAccount.php?error=nodeleteadmin");
+        if(strcasecmp($this->getUsername(), $name) == 0){
+            header("location: ../adminView.php?error=nodeleteadmin");
             exit();
         }
 
         //Connect to database using handler
         $database = new Dbh();
     
-        // Select the stored proc and exexute
-        $sql = "CALL delete_user(:username)";
-        $params = [':username' => $username];
+        // Check if user exists.
+        $sql = "CALL get_user(:username)";
+        $params = [':username' => $name];
         $sqlResult = $database->executeQuery($sql, $params);
+
+        // Check if error occured w/ stmt
+        if($sqlResult == false){
+            $sql = null;
+            $sqlResult->closeCursor();
+            header("location: ../adminView.php?error=stmtfailed");
+            exit();
+        }else{
+
+            $result = $sqlResult->fetch(PDO::FETCH_ASSOC);
+
+            // Check that the user exists
+            if($result == false) {
+                // echo "user doesn't exist"
+                $sql = null;
+                $sqlResult->closeCursor();
+                header("location: ../adminView.php?error=usernotexists");
+                exit();
+            }else{
+                
+                // Close previous query.
+                $sqlResult->closeCursor();
+
+                // Select the stored proc and exexute.
+                $sql = "CALL delete_user(:username)";
+                $params = [':username' => $name];
+                $sqlResult = $database->executeQuery($sql, $params);
+
+                // Check if error occured w/stmt.
+                if($sqlResult == false){
+                    $sql = null;
+                    $sqlResult->closeCursor();
+                    header("location: ../adminView.php?error=stmtfailed");
+                    exit();
+                }
+            }
+        }
 
         // Clear query and close cursor.
         $sql = null;
         $sqlResult->closeCursor();
 
         // Send the admin back to the delete page.
-        header("location: ../deleteAccount.php?error=none");
+        header("location: ../adminView.php?error=none");
         exit();
   }
 
+  public function enrollStudent(){
+
+    
+  }
 }
+

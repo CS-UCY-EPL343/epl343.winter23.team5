@@ -16,7 +16,7 @@ if(isset($_POST["delete"]))
     $zipAdmin = $_SESSION['user'];
     $admin = unserialize($zipAdmin);
 
-    $user -> deleteOtherAccount($username);
+    $admin -> deleteOtherAccount($username);
 }
 
 ?>
