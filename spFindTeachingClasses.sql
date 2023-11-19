@@ -3,7 +3,7 @@ CREATE PROCEDURE find_teaching_classes(
     IN p_username char(36)
 )
 BEGIN
-SELECT *
+SELECT c.*
 FROM Class c
 INNER JOIN Teaching t ON t.CID=c.CID
 INNER JOIN Users u ON u.UserID=t.UserID
