@@ -36,3 +36,13 @@ DROP PROCEDURE IF EXISTS delete_class;
 
 -- Drop delete_user procedure
 DROP PROCEDURE IF EXISTS delete_user;
+
+
+-- Drop get_unenrolled procedure
+DROP PROCEDURE IF EXISTS get_unenrolled;
+
+-- Drop enroll procedure
+DROP PROCEDURE IF EXISTS enroll;
+
+-- Drop enroll show_extra_lesson
+DROP PROCEDURE IF EXISTS show_extra_lesson;
