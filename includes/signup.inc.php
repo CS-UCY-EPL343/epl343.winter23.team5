@@ -14,14 +14,13 @@ if(isset($_POST["submit"]))
     $key = $_POST["key"];
 
     // Instancite SignupContr class
-    include "../classes/DatabaseHandler.php";
-    include "../classes/User.php";
+    include "../classes/user.php";
 
     // If user put this key then Useer type is teacher
     if($key == 'demetrisellinas'){
-        $signup = new User($fname, $lname, $pwd, $pwdConf, $phone, $type = 1,$username=null);
+        $signup = new User($fname, $lname, $pwd, $pwdConf, $phone, $type = 1, $username=null);
     }else{
-        $signup = new User($fname, $lname, $pwd, $pwdConf, $phone, $type = 0 ,$username=null);
+        $signup = new User($fname, $lname, $pwd, $pwdConf, $phone, $type = 0 , $username=null);
     }
 
     // Running error handlers and user signup

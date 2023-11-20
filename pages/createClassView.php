@@ -1,4 +1,25 @@
-<form action="" method="post">
+<?php
+session_start();
+if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
+  header("Location: ../index.php?error");
+  exit("Not supposed to be here...");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create class</title>
+</head>
+
+<h1>Create class</h1>
+
+<body>
+
+<form action="../includes/new_class.php" method="post">
     <label for="name">Class Name:</label>
 <select id="name" name="name" required>
     <option value="C">Chemistry</option>
@@ -63,3 +84,6 @@
 
     <input type="submit" name="create_class" value="Create Class">
 </form>
+
+</body>
+</html>

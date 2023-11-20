@@ -1,11 +1,9 @@
 <?php
 session_start();
-/*
 if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
-  header("Location: index.html?error");
+  header("Location: ../index.php?error");
   exit("Not supposed to be here...");
 }
-*/
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +18,6 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 <h2>Create Class</h2>
 
 <?php
-
-include('create_class_form.html');
 
 if(isset($_POST["create_class"])){
   // Retrieve form data using $_POST
@@ -57,7 +53,7 @@ if(isset($_POST["create_class"])){
   $day2 = substr($from2, 0, 2) . substr($from2, 3) . substr($until2, 0, 2) . substr($until2, 3);
 
   // class instance
-  require "../classes/class.php";
+  require_once "../classes/class.php";
   $class_instance = new _Class($name, $school_year, $code, $available_seats, $week,
                       $day1, $day2, $next_years);
   $class_instance->store_class();
@@ -65,7 +61,7 @@ if(isset($_POST["create_class"])){
   $_SESSION["class_instance"] = $serialized;
   
   // Display class details (this is just an example, you might want to redirect or perform other actions)
-  //$class_instance->display_class();
+  $class_instance->display_class();
 }
 ?>
 
@@ -123,7 +119,6 @@ if(isset($_POST["assign_teacher"])){
 }
 ?>
 
-</form>
-
 </body>
+
 </html>

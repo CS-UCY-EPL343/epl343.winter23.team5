@@ -1,12 +1,10 @@
 <?php
-  require 'DatabaseHandler.php';
-/*
-session_start();
 if (!isset($_SESSION['type']) || $_SESSION['type'] == "Student"){
-  header("Location: index.html?error");
+  header("Location: ../index.php?error");
   exit("Not supposed to be here...");
 }
-*/
+
+include_once 'DatabaseHandler.php';
 
 class _Class implements Serializable {
     private $name;
@@ -164,15 +162,17 @@ class _Class implements Serializable {
         }
       }
       
-      echo "Class ID: $this->class_id<br>";
+      $time1 = substr($this->day1, 0, 4) . "-" . substr($this->day1, 4, 8);
+      $time2 = substr($this->day2, 0, 4) . "-" . substr($this->day2, 4, 8);
+      //echo "Class ID: $this->class_id<br>";
       echo "Name: $this->name<br>";
       echo "School Year: $this->school_year<br>";
       echo "Group: $this->code<br>";
       echo "Available seats: $this->available_seats<br>";
       echo "First day: $week_day1<br>";
-      echo "Time: $this->day1<br>";
+      echo "Time: $time1<br>";
       echo "Second day: $week_day2<br>";
-      echo "Time: $this->day2<br>";
+      echo "Time: $time2<br>";
 
       if (!empty($this->teacher)) {
         echo "Teacher: {$this->teacher->getFullName()}<br>";
@@ -188,4 +188,3 @@ class _Class implements Serializable {
 }
 
 ?>
-

@@ -10,8 +10,7 @@ if(isset($_POST["submit"]))
     $pwd = $_POST["pwd"];
 
     // Instancite SignupContr class
-    include "../classes/DatabaseHandler.php";
-    include "../classes/User.php";
+    include "../classes/user.php";
 
     $login = new User($fname=null, $lname=null, $pwd, $pwdConf=null, $phone=null, $type = null, $username);
 
