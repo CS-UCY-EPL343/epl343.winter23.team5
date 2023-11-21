@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="teacherpage.css">
+    <script src="teacherpage.js"></script>
+    <title>Teacher Page</title>
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <!-- Logo of the institution -->
+        <h2 class="logo">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
+        <!-- Navigation section -->
+        <nav class="navigation">
+            <a href="teacherpage.html">Teacher Page</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <form action="index.php" method="POST">
+
+            <label for="class number">Class number:</label>
+            <input type="text" id="class number" required><br>
+
+            <label for="Date">Date:</label>
+            <input type="date" id="Date"><br>
+
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime" name="startTime" required><br>
+
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime" name="endTime" required><br>
+
+            <input type="submit">
+
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>
