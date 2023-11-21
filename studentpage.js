@@ -1,5 +1,6 @@
 // Function to toggle the visibility of a popup
 function togglePopup() {
+    
     // Get the popup element by its ID
     const popupElement = document.getElementById("popup-1");
 
