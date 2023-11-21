@@ -105,6 +105,10 @@ select, input[type="button"] {
     margin-right: 10px;
 }
 
+#extraLessonBtn {
+    padding: 12px; /* Increase button padding for the "Extra Lessons" button */
+}
+
 /* Style for action buttons */
 .popup .overlay {
     position: fixed;
