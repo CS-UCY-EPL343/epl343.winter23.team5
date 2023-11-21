@@ -3,89 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="stylesheet" href="schedule.css">
+  <script src="schedule.js"></script>
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 10px;
-      background: #2b7a78;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 99;
-    }
-
-    .navigation {
-      display: flex;
-    }
-
-    .navigation a {
-      position: relative;
-      font-size: 1.1em;
-      color: #fff; /* Change text color to white */
-      text-decoration: none;
-      font-weight: 500;
-      margin-right: 50px; /* Adjusted to move the "Home" button to the right */
-    }
-
-    .navigation a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 100%;
-      height: 3px;
-      background: #fff; /* Change underline color to white */
-      border-radius: 5px;
-      transform-origin: right;
-      transform-origin: right;
-      transform: scaleX(0);
-      transition: transform .5s;
-    }
-
-    .navigation a:hover::after {
-      transform-origin: left;
-      transform: scaleX(1);
-    }
-
-    form {
-      margin-top: 10px;
-    }
-
-    table {
-      margin-top: 67px;
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-    select, input[type="button"] {
-      padding: 8px;
-      margin-right: 10px;
-    }
-  </style>
 </head>
 <body>
+  <!-- Header section with form and navigation -->
   <header>
-
     <form id="lessonForm">
+      <!-- Lesson selection dropdown -->
       <label for="lesson">Select a Lesson:</label>
       <select id="lesson" name="lesson">
         <option value="math">Mathematics</option>
@@ -94,6 +20,7 @@
         <!-- Add more options for other lessons -->
       </select>
 
+      <!-- Level selection dropdown -->
       <label for="level">Select a Level:</label>
       <select id="level" name="level">
         <option value="FirstLyceum">FirstLyceum</option>
@@ -102,19 +29,21 @@
         <!-- Add more options for other levels -->
       </select>
 
+      <!-- Button to generate the calendar -->
       <input type="button" value="Generate Calendar" onclick="generateCalendar()">
-          </form>
-          
+    </form>
+
+    <!-- Navigation links -->
     <nav class="navigation">
       <a href="index.html">Home Page</a>
-      <A href="login.html">Login</A>
+      <a href="login.html">Login</a>
     </nav>
-
-
   </header>
 
+  <!-- Table to display the calendar -->
   <table id="calendarTable">
     <thead>
+      <!-- Table header with days of the week -->
       <tr>
         <th>Time</th>
         <th>Monday</th>
@@ -127,67 +56,11 @@
       </tr>
     </thead>
     <tbody id="calendarBody">
-      //Rows will be generated here
+      <!-- Rows will be generated here -->
     </tbody>
   </table>
 
-  <script>
-    function generateCalendar() {
-      var selectedLesson = document.getElementById('lesson').value;
-      var selectedLevel = document.getElementById('level').value;
-      var calendarBody = document.getElementById('calendarBody');
-
-      // Example lesson data for various combinations (replace this with data from the backend)
-      var lessonData = getExampleData(selectedLesson, selectedLevel);
-
-      // Clear existing rows
-      calendarBody.innerHTML = '';
-
-      // Generate new rows based on the lessonData
-      lessonData.forEach(function (row) {
-        var newRow = document.createElement('tr');
-
-        // Create cells for each day
-        Object.keys(row).forEach(function (day) {
-          var newCell = document.createElement('td');
-          newCell.textContent = row[day];
-          newRow.appendChild(newCell);
-        });
-
-        calendarBody.appendChild(newRow);
-      });
-    }
-
-    // Example function to generate data for various lesson and level combinations
-    function getExampleData(lesson, level) {
-      // Map of lessons and their schedules for each level
-      var lessonSchedules = {
-        math: {
-          FirstLyceum: [
-            { time: '8:00 AM', monday: 'Math Lesson 1', tuesday: '', wednesday: 'Math Lesson 2', thursday: '', friday: 'Math Lesson 3', saturday: '', sunday: 'Math Lesson 4' },
-            { time: '9:00 AM', monday: '', tuesday: 'Math Lesson 5', wednesday: '', thursday: 'Math Lesson 6', friday: '', saturday: 'Math Lesson 7', sunday: '' },
-          ],
-          SecondLyceum: [
-            { time: '8:00 AM', monday: 'Math Lesson 1', tuesday: '', wednesday: 'Math Lesson 2', thursday: '', friday: 'Math Lesson 3', saturday: '', sunday: 'Math Lesson 4' },
-            { time: '9:00 AM', monday: '', tuesday: 'Math Lesson 5', wednesday: '', thursday: 'Math Lesson 6', friday: '', saturday: 'Math Lesson 7', sunday: '' },
-            { time: '10:00 AM', monday: 'Math Lesson 1', tuesday: '', wednesday: 'Math Lesson 2', thursday: '', friday: 'Math Lesson 3', saturday: '', sunday: 'Math Lesson 4' },
-            { time: '11:00 AM', monday: '', tuesday: 'Math Lesson 5', wednesday: '', thursday: 'Math Lesson 6', friday: '', saturday: 'Math Lesson 7', sunday: '' },
-          ],
-          ThirdLyceum: [
-            // Define advanced schedule for math...
-          ],
-        },
-        physics: {
-          // Define schedules for physics...
-        },
-        biology: {
-          // Define schedules for biology...
-        },
-        // Add more lessons as needed
-      };
-
-      return lessonSchedules[lesson][level] || [];
-    }
-  </script>
+  <!-- JavaScript script -->
+  <script src="script.js"></script>
 </body>
 </html>
