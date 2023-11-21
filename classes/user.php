@@ -1,4 +1,5 @@
 <?php
+include_once "DatabaseHandler.php";
 
 class User implements Serializable{
 
@@ -24,14 +25,6 @@ class User implements Serializable{
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
     public function getUsername(){
         return $this->username;
-    }
-
-    public function getFirstName(){
-        return $this->fname;
-    }
-
-    public function getLastName(){
-        return $this->lname;
     }
 
     public function serialize(){
@@ -124,7 +117,6 @@ class User implements Serializable{
 
         if($sqlResult == false){
             $sql = null;
-            $sqlResult->closeCursor();
             header("location: ../index.php?error=stmtfailed");
             exit();
         }else{
@@ -150,7 +142,6 @@ class User implements Serializable{
 
                 if($sqlRegister == false){
                     $sql = null;
-                    $sqlResult->closeCursor();
                     header("location: ../index.php?error=stmtfailed");
                     exit();
                 }
@@ -158,7 +149,6 @@ class User implements Serializable{
         }
         // Close previous query
         $sqlResult->closeCursor();
-        echo "User '{$this->username}' has been registered.\n";
         header("location: ../index.php?error=none");
   }
 ////////////////////////////////////end of register code//////////////////////////////////////
@@ -186,7 +176,6 @@ class User implements Serializable{
     // If the query has a problem exit.
     if($sqlResult == false){
         $sql = null;
-        $sqlResult->closeCursor();
         header("location: ../index.php?error=stmtfailed");
         exit();
     }else{
@@ -209,7 +198,7 @@ class User implements Serializable{
             if($checkPwd == false){
 
                 $sql = null;
-                $sql = null;
+                $sqlResult->closeCursor();
                 header("location: ../index.php?error=wrongpassword");
                 exit();
 
@@ -245,8 +234,6 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Teacher';
 
                         // Send to Teacher page.
-                        //header("location: ../user/teacherdashboard.php");
-                        // Test homepage
                         header("location: ../pages/teacherView.php");
 
                     }elseif($result['UType'] == 0){
@@ -258,7 +245,7 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Student';
 
                         // Send to Student page.
-                        header("location: ../pages/studenView.php");
+                        header("location: ../pages/studentView.php");
                         
                     }
                 }else{
@@ -290,7 +277,7 @@ class User implements Serializable{
         $sql = null;
         $sqlResult->closeCursor();
 
-        header("location: ../pages/adminView.php");
+        header("location: ../index.php");
         exit();
   }
 
@@ -330,7 +317,6 @@ class Admin extends User {
         // Check if error occured w/ stmt
         if($sqlResult == false){
             $sql = null;
-            $sqlResult->closeCursor();
             header("location: ../pages/adminView.php?error=stmtfailed");
             exit();
         }else{
@@ -357,7 +343,6 @@ class Admin extends User {
                 // Check if error occured w/stmt.
                 if($sqlResult == false){
                     $sql = null;
-                    $sqlResult->closeCursor();
                     header("location: ../pages/adminView.php?error=stmtfailed");
                     exit();
                 }
