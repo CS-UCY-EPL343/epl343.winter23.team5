@@ -61,10 +61,10 @@ header {
 
 /* Additional styles for the form */
 form {
-    width: 60%; /* Adjusted width of the form */
+    width: 40%; /* Adjusted width of the form */
     margin: 80px auto; /* Center the form, add margin to the top */
     background-color: #fff; /* Set background color */
-    padding: 20px; /* Add padding to the form */
+    padding: 50px; /* Add padding to the form */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
 }
 
@@ -94,4 +94,12 @@ form input[type="submit"] {
 /* Hover effect for the submit button */
 form input[type="submit"]:hover {
     background-color: #185d5a;
+}
+
+/* Center the header within the main section */
+main h1 {
+    font-size: 30px; /* Increased font size */
+    font-weight: bold; /* Applied bold font weight */
+    margin-top: 20px; /* Adjusted margin for the header */
+    text-align: center; /* Center the text */
 }
