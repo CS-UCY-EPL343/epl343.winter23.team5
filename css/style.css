@@ -1,8 +1,8 @@
 body{
-    font:sans-serif;
+    font-family:"Poppins",sans-serif;
     padding:0;
     margin:0;
-    background-color: #3AAFA9
+    background-color: #DEF2F1
 }
 
 /*Unordered list*/
@@ -13,12 +13,13 @@ ul{
 
 /*Header*/
 header{
-    background: #14252a;
-    color: #ffffff;
+    font-weight: bold;
+    background: #2B7A78;
+    color: #17252A;
     padding-top: 10px;
     padding-bottom:20px;
     padding-left:10px;
-    min-height:70px;
+    min-height:60px;
     border-bottom: #def2f1;
 }
 
@@ -28,7 +29,7 @@ header a{
     text-decoration: none;
     text-transform: capitalize; /*Controls the capitalization of text*/
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 /*Header elements of the list*/
@@ -43,12 +44,14 @@ header #branding{
 }
 
 header .container #branding h1 a{
+    font-weight: bold;
     font-size: 28px;
     margin-top: 0px;
     margin-bottom: 0;
+    margin-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
-    color:whitesmoke;
+    color: #17252A;
 
 }
 
@@ -65,11 +68,67 @@ header h1 a, header .current a{
 
 /*Generally on the a in the header when you move the mouse over them*/
 header a:hover{
-    color:#2B7A78;
+    color:#17252A;
     font-weight:bold;
 }
 
 /*Generally on header links when u visit them*/
 header .current a:visited{
-    color:#2B7A78
+    color:#17252A
+}
+
+body .map{
+    position: relative;
+}
+
+body .map iframe{
+    margin-right: 10px;
+    width: 100%;
+}
+
+/*
+body .map figcaption{
+    color: #3aafa9;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+*/
+
+/* Style the caption */
+.map .map-caption {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    text-align: left;
+}
+
+footer #SocialMedia{
+    color: #17252A;
+    padding-left: 10px;
+    font-weight: 300px;
+    font-size: 15px;
+}
+
+footer img{
+    padding-right: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: auto;
 }
