@@ -150,3 +150,12 @@ select, input[type="button"] {
     transition: all 300ms ease-in-out;
     transform: translate(-50%, -50%) scale(1);
 }
+
+button:hover {
+    background-color: #2b7a78; /* Change this to the desired hover color */
+    color: #fff;
+}
+button.active {
+    background-color: #2b7a78; /* Change this to the desired active color */
+    color: #fff;
+}
