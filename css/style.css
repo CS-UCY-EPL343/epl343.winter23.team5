@@ -84,6 +84,7 @@ body .map{
 body .map iframe{
     margin-right: 10px;
     width: 100%;
+    height: 570px;
 }
 
 /*
@@ -98,7 +99,7 @@ body .map figcaption{
 /* Style the caption */
 .map .map-caption {
     position: absolute;
-    bottom: -40px;
+    bottom: auto;
     left: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.8);
@@ -107,28 +108,103 @@ body .map figcaption{
     font-weight: bold;
   }
 
-footer {
-    position: fixed;
+#main-footer {
+    flex: 1;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
     padding: 5px;
-    text-align: left;
+    color: #feffff;
 }
 
-footer #SocialMedia{
+/*
+#main-footer #SocialMedia{
     color: #17252A;
     padding-left: 10px;
     font-weight: 300px;
     font-size: 15px;
 }
+*/
 
-footer img{
-    padding-right: 10px;
+#main-footer img{
+    padding-right: 150px;
     position: absolute;
-    bottom: 0;
+    bottom: 25px;
+    top: 30px;
     right: 0;
-    width: 60px;
+    width: 300px;
     height: auto;
+}
+
+.footer-container {
+    flex: 1;
+    background-color: #3AAFA9;
+    height: 350px;
+    color: #feffff;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-container .footer-widget{
+    width: 30;
+    float: left;
+    color: #feffff;
+}
+
+h4{
+    padding-bottom: 10px;
+    line-height: 1em;
+    font-weight: 500;
+}
+
+.footer-widget h4{
+    color: #8ff0eb;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#main-footer .footer-widget #Telephone{
+    margin-right: 0 !important;
+}
+
+#main-footer .footer-widget #Email{
+    margin-left: 10px !important;
+    margin-bottom: 0;
+}
+
+#Address{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 20px; /* Change this value to position it at a different vertical position */
+    left: 260px;
+}
+
+#Email{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 60px; /* Change this value to position it at a different vertical position */
+    left: 250px;
+}
+
+#Telephone{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 20px; /* Change this value to position it at a different vertical position */
+    left: 700px;
+}
+
+.Details{
+    font-size: large;
+    float: left;
+    max-width: 100%;
+    word-wrap: break-word;
 }
