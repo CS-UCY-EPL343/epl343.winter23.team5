@@ -290,7 +290,7 @@ class User implements Serializable{
         $sql = null;
         $sqlResult->closeCursor();
 
-        header("location: ../adminView.php");
+        header("location: ../pages/adminView.php");
         exit();
   }
 
@@ -315,7 +315,7 @@ class Admin extends User {
 
         // Check that admin is not being deleted.
         if(strcasecmp($this->getUsername(), $name) == 0){
-            header("location: ../adminView.php?error=nodeleteadmin");
+            header("location: ../pages/adminView.php?error=nodeleteadmin");
             exit();
         }
 
@@ -331,7 +331,7 @@ class Admin extends User {
         if($sqlResult == false){
             $sql = null;
             $sqlResult->closeCursor();
-            header("location: ../adminView.php?error=stmtfailed");
+            header("location: ../pages/adminView.php?error=stmtfailed");
             exit();
         }else{
 
@@ -342,7 +342,7 @@ class Admin extends User {
                 // echo "user doesn't exist"
                 $sql = null;
                 $sqlResult->closeCursor();
-                header("location: ../adminView.php?error=usernotexists");
+                header("location: ../pages/adminView.php?error=usernotexists");
                 exit();
             }else{
                 
@@ -358,7 +358,7 @@ class Admin extends User {
                 if($sqlResult == false){
                     $sql = null;
                     $sqlResult->closeCursor();
-                    header("location: ../adminView.php?error=stmtfailed");
+                    header("location: ../pages/adminView.php?error=stmtfailed");
                     exit();
                 }
             }
@@ -369,13 +369,59 @@ class Admin extends User {
         $sqlResult->closeCursor();
 
         // Send the admin back to the delete page.
-        header("location: ../adminView.php?error=none");
+        header("location: ../pages/adminView.php?error=none");
         exit();
   }
 
-  public function enrollStudent(){
+  public function enrollStudent($username){
 
+    //Connect to database using handler
+    $database = new Dbh();
     
+    // Check if user exists.
+    $sql = "CALL delete_user(:username)";
+    $params = [':username' => $username];
+    $sqlResult = $database->executeQuery($sql, $params);
+
+    // Check if error occured w/ stmt
+    if($sqlResult == false){
+        $sql = null;
+        $sqlResult->closeCursor();
+        header("location: ../pages/enrollView2.php?error=stmtfailed");
+        exit();
+    }else{
+        session_start();
+        $_SESSION["delete"] = $username." was deleted Successfully!";
+        header("Location:../pages/enrollView2.php");
+    }
+
+    // Clear query and close cursor.
+    $sql = null;
+    $sqlResult->closeCursor();
+  }
+
+  public function declineEnrollment($username){
+
+    //Connect to database using handler
+    $database = new Dbh();
+    
+    // Check if user exists.
+    $sql = "CALL delete_user(:username)";
+    $params = [':username' => $username];
+    $sqlResult = $database->executeQuery($sql, $params);
+    
+    // Check if error occured w/ stmt
+    if($sqlResult == false){
+        $sql = null;
+        $sqlResult->closeCursor();
+        header("location: ../pages/enrollView2.php?error=stmtfailed");
+        exit();
+    }else{
+        session_start();
+        $_SESSION["delete"] = $username." was deleted Successfully!";
+        header("Location:../pages/enrollView2.php");
+    }
+
   }
 }
 
