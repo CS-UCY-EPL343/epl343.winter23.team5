@@ -95,7 +95,13 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background-color: #185d5a;
 }
-
+main {
+    margin-top: 20px; /* Adjusted margin to create space below the header */
+    margin-bottom: 400px; /* Increased margin to add more space at the bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* Center the header within the main section */
 main h1 {
     font-size: 30px; /* Increased font size */
