@@ -60,7 +60,7 @@ if(isset($_POST["create_class"])){
   $serialized = serialize($class_instance);
   $_SESSION["class_instance"] = $serialized;
   
-  // Display class details (this is just an example, you might want to redirect or perform other actions)
+  // Display class details
   $class_instance->display_class();
 }
 ?>
@@ -72,10 +72,10 @@ if(isset($_POST["create_class"])){
 </form>
 
 <?php
-  // assign tutor section
+// assign tutor section
 if(isset($_POST["teachers_list"])){
   // Retrieve form data using $_POST
-  require "../classes/DatabaseHandler.php";
+  require_once "../classes/DatabaseHandler.php";
   $database = new Dbh();
 
   // Select sp and exec
@@ -85,7 +85,7 @@ if(isset($_POST["teachers_list"])){
 
   if ($query == false){
     $query = null;
-    header("Location: new_class.php?query_error");
+    header("Location: ../includes/new_class.php?query_error");
     exit();
   }
 
@@ -110,12 +110,14 @@ if(isset($_POST["teachers_list"])){
 
 <?php
 if(isset($_POST["assign_teacher"])){
-  require "../classes/class.php";
+  require_once "../classes/class.php";
 
   $username = $_POST["username"];
   $serialized = $_SESSION["class_instance"];
   $class_instance = unserialize($serialized);
   $class_instance->assign_teacher($username);
+
+  header("Location: ../pages/adminView.php?ELsuccess");
 }
 ?>
 
