@@ -10,7 +10,7 @@ BEGIN
         SELECT u2.*
         FROM Users u2
         INNER JOIN BelongsTo b ON u2.UserID = b.UserID
-        INNER JOIN CLASS c ON b.CID = c.CID
+        INNER JOIN Class c ON b.CID = c.CID
         WHERE c.CID = p_CID AND u1.UserID = u2.UserID
     );
 END //
