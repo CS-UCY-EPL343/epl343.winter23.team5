@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Link to external stylesheets and scripts -->
-  <link rel="stylesheet" href="studentpage.css">
-  <script src="studentpage.js"></script>
+  <link rel="stylesheet" href="../css/studentpage.css">
+  <script src="../javascript/studentpage.js"></script>
 
   <!-- Title of the page -->
   <title>Student Page</title>
@@ -87,7 +87,7 @@
     <!-- Navigation section -->
     <nav class="navigation">
       <a href="studentpage.html">Student Page</a>
-      <a href="index.html">Logout</a>
+      <a href="../index.html">Logout</a>
     </nav>
   </header>
 
@@ -123,8 +123,53 @@
       <div class="overlay"></div>
       <div class="content">
         <div class="close-btn" onclick="togglePopup()">&times;</div>
-        <h1>Extra Lessons</h1>
-        <p>No extra lessons!</p>
+        <h1>Extra Lessons</h1><br>
+        <?php
+        session_start();
+
+
+
+
+        include_once '../classes/user.php';
+        include_once '../classes/DatabaseHandler.php';
+        $serialized = $_SESSION['user'];
+        $retrievedUser = unserialize($serialized);
+
+
+
+
+        $database = new Dbh();
+        $sql = "CALL show_extra_lesson(:username)";
+        $params = [':username' => $retrievedUser->getUsername()];
+        $sqlResult = $database->executeQuery($sql, $params);
+
+        if ($sqlResult == false) {
+          $sqlResult = null;
+          header("location: ../pages/studentView.php?query_error");
+          exit();
+        }
+
+        $result = $sqlResult->fetchAll(PDO::FETCH_ASSOC);
+        $sqlResult->closeCursor();
+
+        if (count($result) == 0) {
+          echo '<p>You do not have any extra lessons!</p>';
+        } else {
+          $i = 1;
+          foreach ($result as $row) {
+            if ($row['CName'] == 'M') {
+              $CName = "Maths";
+            } else if ($row["CName"] == "C") {
+              $CName = "Chemistry";
+            } else if ($row["CName"] == "P") {
+              $CName = "Physics";
+            }
+            $time = substr($row['ELTime'], 0, 4) . "-" . substr($row["ELTime"], 4, 8);
+            echo "<p>Extra Lesson $i: " . $row['ELDate'] . " $time, $CName, Group " . $row['CNumber'] . "</p><br>";
+            $i++;
+          }
+        }
+        ?>
       </div>
     </div>
 
