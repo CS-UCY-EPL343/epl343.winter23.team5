@@ -44,5 +44,11 @@ DROP PROCEDURE IF EXISTS get_unenrolled;
 -- Drop enroll procedure
 DROP PROCEDURE IF EXISTS enroll;
 
--- Drop enroll show_extra_lesson
+-- Drop show_extra_lesson procedure
 DROP PROCEDURE IF EXISTS show_extra_lesson;
+
+-- Drop fetch_class_students procedure
+DROP PROCEDURE IF EXISTS fetch_class_students;
+
+-- Drop fetch_other_students procedure
+DROP PROCEDURE IF EXISTS fetch_other_students;
