@@ -1,19 +1,21 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Poppins", sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
-/*background*/
-body{
-    display:flex;
+
+/* Set a background color and style for the body */
+body {
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: #DEF2F1;
 }
-/*header*/
-header{
+
+/* Header styling */
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -25,8 +27,9 @@ header{
     align-items: center;
     z-index: 99;
 }
-/*header dexia*/
-.navigation a{
+
+/* Navigation links in the header */
+.navigation a {
     position: relative;
     font-size: 1.1em;
     color: #fff;
@@ -35,12 +38,12 @@ header{
     margin-left: 40px;
 }
 
-.navigation a::after{
-    content:'';
-    position:absolute;
-    left:0;
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
     bottom: -6px;
-    width:100%;
+    width: 100%;
     height: 3px;
     background: #fff;
     border-radius: 5px;
@@ -50,98 +53,95 @@ header{
     transition: transform .5s;
 }
 
-.navigation a:hover::after{
-    transform-origin:left ;
-    transform:scaleX(1);
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
 }
 
-
-
-/*inside*/
-.wrapper{
+/* Styling for the wrapper containing the registration form */
+.wrapper {
+    position: relative;
     width: 420px;
     background: #2b7a78;
-    color:#fff;
+    color: #fff;
     border-radius: 10px;
-    padding:30px 40px;
-    overflow: hidden;
-    /*background: transparent;
-    border:2px solid rgba(255,255,255,.2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
-    color:#fff;
-    border-radius: 10px;
-    padding:30px 40px;*/
+    padding: 30px 40px;
 }
 
-/*inside-center*/
-.wrapper h1{
+/* Center-align the form heading */
+.wrapper h1 {
     font-size: 36px;
     text-align: center;
 }
 
-
-
-.wrapper .input-box{
+/* Styling for the input boxes */
+.wrapper .input-box {
     position: relative;
     width: 100%;
-    height: 25px;
+    height: 50px;
     margin: 30px 0;
 }
 
-.input-box input{
+/* Input field styling */
+.input-box input {
     width: 100%;
     height: 100%;
     background: transparent;
-    border:none;
+    border: none;
     outline: none;
-    border:2px solid #17252A;
+    border: 2px solid #17252A;
     border-radius: 40px;
-    font-size:16px;
-    color: 17252A;
+    font-size: 16px;
+    color: #17252A;
     padding: 20px 45px 20px 20px;
 }
 
-.input-box input::placeholder{
-    color:#17252A;
+/* Placeholder text styling */
+.input-box input::placeholder {
+    color: #17252A;
 }
 
-.input-box i{
+/* Styling for the icon next to the input */
+.input-box i {
     position: absolute;
     right: 20px;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
-    font-size:20px;
+    font-size: 20px;
 }
 
-/*login button*/
-.wrapper .btn{
- width: 100%;
- height: 45px;
- background: #fff;
- border:none;
- outline:none;
- border-radius: 40px;
- box-shadow: 0 0 10px rgba(0,0,0,-1);
- cursor:pointer;
- font-size: 16px;
- color:#333;
- font-weight: 600;
+/* Styling for the button */
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
 }
 
-.login-register{
+/* Styling for the login-register section */
+.login-register {
     font-size: .9em;
     color: #162938;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
 }
+
+/* Styling for the login link */
 .login-register p a {
-    color:#162938;
-    text-decoration:none;
+    color: #162938;
+    text-decoration: none;
     font-weight: 600;
 }
 
-.login-register p a:hover{
+/* Styling for the login link on hover */
+.login-register p a:hover {
     text-decoration: underline;
 }
