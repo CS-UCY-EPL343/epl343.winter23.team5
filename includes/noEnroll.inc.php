@@ -6,6 +6,9 @@ require_once "../classes/DatabaseHandler.php";
 if (isset($_GET['username'])) {
 
     $username = $_GET['username'];
+
+    // Instancite User class
+    require_once "../classes/user.php";
     
     session_start();
 

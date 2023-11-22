@@ -27,5 +27,8 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 
     </form>
 </body>
+
+<a href="../pages/enrollView2.php">Enroll Page</a><br>
+
 </html>
 

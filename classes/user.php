@@ -364,7 +364,7 @@ class Admin extends User {
     $database = new Dbh();
     
     // Check if user exists.
-    $sql = "CALL delete_user(:username)";
+    $sql = "CALL enroll(:username)";
     $params = [':username' => $username];
     $sqlResult = $database->executeQuery($sql, $params);
 
@@ -376,7 +376,7 @@ class Admin extends User {
         exit();
     }else{
         session_start();
-        $_SESSION["delete"] = $username." was deleted Successfully!";
+        $_SESSION["delete"] = $username." was enrolled Successfully!";
         header("Location:../pages/enrollView2.php");
     }
 
@@ -406,6 +406,10 @@ class Admin extends User {
         $_SESSION["delete"] = $username." was deleted Successfully!";
         header("Location:../pages/enrollView2.php");
     }
+
+    // Clear query and close cursor.
+    $sql = null;
+    $sqlResult->closeCursor();
 
   }
 }

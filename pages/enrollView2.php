@@ -25,7 +25,10 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 <body>
     <div class="container my-4">
         <header class="d-flex justify-content-between my-4">
-            <h1>Request for Enrollment</h1>
+            <h1>Requests for Enrollment</h1>
+            <div>
+                <a href="../pages/adminView.php" class="btn btn-primary">Go Back</a>
+            </div>
         </header>
         <?php
         #session_start();
