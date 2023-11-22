@@ -16,7 +16,7 @@ body .Intro-picture{
     /* Add additional styles if needed */
     margin: 0;
     width: 100%;
-    height: 650px;
+    height: 90vh;
     padding: 0;
     justify-content: space-around;
 }
@@ -26,11 +26,21 @@ body .Intro-Title{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 44px;
+    font-size: 3vw;
     font-weight: bold;
-    text-shadow: 2px 2px 4px #3AAFA9;
+    text-shadow: 0.2vw 0.2vw 0.4vw #3AAFA9;
     color: #def2f1;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
+
+@media (max-width: 768px) {
+    body .Intro-Title {
+      font-size: 16px; /* Adjust for smaller screens */
+    }
+  }
 
 /*Unordered list*/
 ul{
@@ -141,13 +151,23 @@ body .map figcaption{
     font-weight: bold;
   }
 
+/*Footer CSS*/
 #main-footer {
+    /*
     flex: 1;
-    position: absolute;
-    bottom: auto;
+    position: relative;
+    top: 100%;
+    bottom: 0;
     left: 0;
     width: 100%;
     color: #feffff;
+    */
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #feffff;
+    clear: both;
 }
 
 /*
@@ -160,13 +180,20 @@ body .map figcaption{
 */
 
 #main-footer img{
-    padding-right: 150px;
+    /*
+    padding-right: 100px;
     position: absolute;
-    bottom: 25px;
-    top: 30px;
+    bottom: 25x;
+    top: 25px;
     right: 0;
     width: 300px;
-    height: auto;
+    height: 300px;
+    */
+    position: absolute;
+    bottom: 5%; /* Adjust as needed */
+    right: 7%;
+    max-width: 100%; /* Make the image responsive within its container */
+    max-height: 90%;
 }
 
 .footer-container {
@@ -213,7 +240,7 @@ h4{
     margin-left: 0px !important;
     margin-top: 0;
     top: 20px; /* Change this value to position it at a different vertical position */
-    left: 260px;
+    left: 210px;
 }
 
 #Email{
@@ -222,7 +249,7 @@ h4{
     margin-left: 0px !important;
     margin-top: 0;
     bottom: 60px; /* Change this value to position it at a different vertical position */
-    left: 250px;
+    left: 200px;
 }
 
 #Telephone{
@@ -231,7 +258,16 @@ h4{
     margin-left: 0px !important;
     margin-top: 0;
     top: 20px; /* Change this value to position it at a different vertical position */
-    left: 700px;
+    left: 600px;
+}
+
+#Facebook{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 100px; /* Change this value to position it at a different vertical position */
+    left: 600px;
 }
 
 .Details{
@@ -239,4 +275,15 @@ h4{
     float: left;
     max-width: 100%;
     word-wrap: break-word;
+}
+
+.Details a{
+    text-decoration: none;
+    color: #feffff;
+}
+
+.Details a:hover{
+    text-decoration: none;
+    font-weight: bold;
+    color: #39464c;
 }
