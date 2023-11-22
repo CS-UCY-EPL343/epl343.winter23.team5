@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function checkData($data)
     {
         if (empty($data)) {
-            $_SESSION['message'] = 'Empty Fields!<br>Failed Submission';
-            header("Location: ../pages/extraLessonView.php");
+            $_SESSION['message'] = 'Empty Fields!<br>Failed Submission<br>';
+            header("Location: ../tempPages/insertExtraLessons.php");
             exit();
         }
         $data = trim($data);
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $timeTo = checkData($_POST["timeTo"]);
 
     if ($timeFrom >= $timeTo) {
-        $_SESSION['message'] = 'Start time must be before finish time!<br>Failed Submission';
-        header("Location: ../pages/extraLessonView.php");
+        $_SESSION['message'] = 'Start time must be before finish time!<br>Failed Submission<br>';
+        header("Location: ../tempPages/insertExtraLessons.php");
         exit();
     }
 
@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $classes = $_SESSION['classes'];
 
     if ($class < 1 || $class > count($classes)) {
-        $_SESSION['message'] = 'You do not teach this class!<br>Failed Submission';
-        header("Location: ../pages/extraLessonView.php");
+        $_SESSION['message'] = 'You do not teach this class!<br>Failed Submission<br>';
+        header("Location: ../tempPages/insertExtraLessons.php");
         exit();
     }
 
@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $sqlResult->closeCursor();
 
-    $_SESSION['message'] = 'Submission Successful!';
-    header("Location: ../pages/extraLessonView.php");
+    $_SESSION['message'] = 'Submission Successful!<br>';
+    header("Location: ../tempPages/insertExtraLessons.php");
     exit();
 }
 

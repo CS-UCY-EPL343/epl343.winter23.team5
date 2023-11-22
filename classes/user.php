@@ -149,7 +149,7 @@ class User implements Serializable{
         }
         // Close previous query
         $sqlResult->closeCursor();
-        header("location: ../index.php?error=none");
+        header("location: ../index.html?error=none");
   }
 ////////////////////////////////////end of register code//////////////////////////////////////
 
