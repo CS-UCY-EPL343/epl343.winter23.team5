@@ -20,6 +20,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 <body>
 
 <a href="createClassView.php">Create class page</a><br>
+<a href="deleteClassView.php">Delete class page</a><br>
 
     <form action="../includes/adminDelete.inc.php" method="POST">
     Username: <input type="text" name="username" require><br>

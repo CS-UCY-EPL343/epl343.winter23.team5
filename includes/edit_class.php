@@ -1,11 +1,9 @@
 <?php
 session_start();
-/*
 if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
-  header("Location: index.html?error");
+  header("Location: ../index.php?error");
   exit("Not supposed to be here...");
 }
-*/
 ?>
 
 <!DOCTYPE html>
@@ -17,51 +15,58 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
 </head>
 <body>
 
-<h2>List classes</h2>
-
-<form action="edit_class.php" method="post">
-    <button type="submit" id="classes_list" name="classes_list">Fetch</button>
-</form>
 
 <?php
+    
+if(isset($_POST["edit_class"])){
+  $classes = $_SESSION['classes'];
+  $class = $_POST['class'];
+  $class_id = $classes[$class - 1]["CID"];
+  $_SESSION["class_id"] = $class_id;
 
-if(isset($_POST["classes_list"])){
-  require '../classes/user.php';
-  require '../classes/class.php';
-  /*
-  $serialized = $_SESSION['user'];
-  $teacher = unserialize($serialized);
-  */
-  $database = new Dbh();
-  $sql = "CALL find_teaching_classes(:username)";
-  //$params = [":username" => $teacher->getUsername()];
-  $params = [":username" => "alicejohnson"];
+  $name = $_POST["name"];
+  $school_year = $_POST["school_year"];
+  $code = $_POST["code"];
+  $available_seats = $_POST["available_seats"];
 
-  $query = $database->executeQuery($sql, $params);
-  if ($query == false){
-    $query = null;
-    header("Location: new_class.php?query_error");
-    exit();
-  }
+  $first_day = $_POST["first_day"];
+  $from1 = $_POST["from1"];
+  $until1 = $_POST["until1"];
 
-  //echo "<ul>";
+  $second_day = $_POST["second_day"];
+  $from2 = $_POST["from2"];
+  $until2 = $_POST["until2"];
+  $next_years = isset($_POST["next_years"]) ? 1 : 0;
 
-  $rows = $query->fetchALL(PDO::FETCH_ASSOC);
-  foreach ($rows as $row){
-    $class_instance = new _Class($row["CName"], $row["SchoolYear"], $row["CNumber"],
-    $row["AvailableSeats"], $row["CDays"], $row["TimeForFirstDay"], $row["TimeForSecondDay"],
-    $row["NextYears"], $row["CID"]);
-    $class_instance->display_class();
-    echo "<br>";
-  }
-  $query->closeCursor();
+  $daysMap = [
+    "Monday"    => 0,
+    "Tuesday"   => 1,
+    "Wednesday" => 2,
+    "Thursday"  => 3,
+    "Friday"    => 4,
+    "Saturday"  => 5,
+    "Sunday"    => 6,
+  ];
 
-  //echo "</ul>";
+  $week = "0000000";
+  $week[$daysMap[$first_day]] = '1';
+  $week[$daysMap[$second_day]] = '1';
+
+  $day1 = substr($from1, 0, 2) . substr($from1, 3) . substr($until1, 0, 2) . substr($until1, 3);
+  $day2 = substr($from2, 0, 2) . substr($from2, 3) . substr($until2, 0, 2) . substr($until2, 3);
+
+  // class instance
+  require_once "../classes/class.php";
+  $class_instance = new _Class($name, $school_year, $code, $available_seats, $week,
+                      $day1, $day2, $next_years, $class_id);
+  $class_instance->edit_class();
+  $serialized = serialize($class_instance);
+  
+  // Display class details
+  $class_instance->display_class();
 }
 ?>
 
-
-</form>
-
 </body>
+
 </html>

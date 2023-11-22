@@ -21,6 +21,9 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
         <input type="submit" name="delete" value="delete">
     </form>
 
+<br>
+<a href="editClassView.php">Edit class page</a><br>
+<br>
 <a href="extraLessonView.php">Add extra lesson</a><br>
 
 </body>
