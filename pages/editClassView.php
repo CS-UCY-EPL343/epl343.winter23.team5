@@ -17,54 +17,15 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
 
 <body>
 
-<h1>List classes</h1>
-
-<?php
-
-require_once '../classes/user.php';
-require_once '../classes/class.php';
-
-$serialized = $_SESSION['user'];
-$teacher = unserialize($serialized);
-
-$database = new Dbh();
-$sql = "CALL find_teaching_classes(:username)";
-$params = [":username" => $teacher->getUsername()];
-
-$query = $database->executeQuery($sql, $params);
-if ($query == false){
-  $query = null;
-  header("Location: editClassView.php?query_error");
-  exit();
-}
-
-//echo "<ul>";
-
-$rows = $query->fetchALL(PDO::FETCH_ASSOC);
-$_SESSION['classes'] = $rows;
-
-$i = 1;
-foreach ($rows as $row){
-  $class_instance = new _Class($row["CName"], $row["SchoolYear"], $row["CNumber"],
-    $row["AvailableSeats"], $row["CDays"], $row["TimeForFirstDay"], $row["TimeForSecondDay"],
-    $row["NextYears"], $row["CID"]);
-
-  echo "Class ID: $i<br>";
-  $class_instance->display_class();
-  echo "<br>";
-  $i++;
-}
-$query->closeCursor();
-
-//echo "</ul>";
-?>
-
 <h1>Edit class</h1>
 
-<form action="../includes/edit_class.php" method="post">
-    <label for="class">Class ID:</label>
-    <input type="number" id = "class"name="class" required><br>
+<?php
+if(isset($_GET["cid"])){
+  $_SESSION["cid"] = $_GET["cid"];
+}
+?>
 
+<form action="../includes/edit_class.php" method="post">
     <label for="name">Class Name:</label>
 <select id="name" name="name" required>
     <option value="C">Chemistry</option>
@@ -128,15 +89,6 @@ $query->closeCursor();
     <input type="checkbox" id="next_years" name="next_years"><br>
 
     <input type="submit" name="edit_class" value="Edit Class">
-</form>
-
-<h1>Assign students</h1>
-
-<form action="../includes/assign_students.php" method="post">
-    <label for="class">Class ID:</label>
-    <input type="number" id = "class"name="class" required><br>
-
-    <input type="submit" name="assign_students" value="Assign students">
 </form>
 
 </body>
