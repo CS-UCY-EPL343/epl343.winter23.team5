@@ -59,67 +59,11 @@ if(isset($_POST["create_class"])){
   $class_instance->store_class();
   $serialized = serialize($class_instance);
   $_SESSION["class_instance"] = $serialized;
-  
-  // Display class details
-  $class_instance->display_class();
+  header("Location: ../pages/assignTeacherView.php");
 }
 ?>
 
-<h2>List tutors</h2>
 
-<form action="new_class.php" method="post">
-    <button type="submit" id="teachers_list" name="teachers_list">Fetch</button>
-</form>
-
-<?php
-// assign tutor section
-if(isset($_POST["teachers_list"])){
-  // Retrieve form data using $_POST
-  require_once "../classes/DatabaseHandler.php";
-  $database = new Dbh();
-
-  // Select sp and exec
-  $sql = "CALL fetch_teachers()";
-  $params = [];
-  $query = $database->executeQuery($sql, $params);
-
-  if ($query == false){
-    $query = null;
-    header("Location: ../includes/new_class.php?query_error");
-    exit();
-  }
-
-  echo "<ul>";
-
-  $rows = $query->fetchALL(PDO::FETCH_ASSOC);
-  foreach ($rows as $row)
-    echo "<li>$row[Fname] $row[Lname] $row[username]</li>";
-  $query->closeCursor();
-
-  echo "</ul>";
-}
-?>
-
-<h2>Assign tutor to class</h2>
-
-<form action="new_class.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br>
-    <button type="submit" id="assign_teacher" name="assign_teacher">Assign</button>
-</form>
-
-<?php
-if(isset($_POST["assign_teacher"])){
-  require_once "../classes/class.php";
-
-  $username = $_POST["username"];
-  $serialized = $_SESSION["class_instance"];
-  $class_instance = unserialize($serialized);
-  $class_instance->assign_teacher($username);
-
-  header("Location: ../pages/adminView.php?ELsuccess");
-}
-?>
 
 </body>
 

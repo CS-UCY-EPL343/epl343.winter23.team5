@@ -20,27 +20,27 @@
     <!-- Wrapper div to contain the login form -->
     <div class="wrapper">
         <!-- Login form -->
-        <form action="">
+        <form action="../includes/login.inc.php" method="POST">
             <!-- Form heading -->
             <h1>Login</h1>
             
             <!-- Input field for Username -->
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" name="username" placeholder="Username" required>
                 <!-- Icon for the Username input -->
                 <i class='bx bx-user'></i>
             </div>
             
             <!-- Input field for Password -->
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" name="pwd" placeholder="Password" required>
                 <!-- Icon for the Password input -->
                 <i class='bx bx-lock-alt'></i>
             </div>
  
             <!-- Button to submit the form -->
-            <button type="submit" class="btn">Login</button>
-
+            <button type="submit" class="btn" name="submit">Login</button>
+            
             <!-- Registration link for users without an account -->
             <div class="login-register">
                 <p>Don't have an account? <a href="register.html" class="register-link">Register</a></p>
@@ -56,7 +56,7 @@
         <!-- Navigation links for Schedule Page and Home Page -->
         <nav class="navigation">
             <a href="schedule.html">Schedule Page</a>
-            <a href="index.html">Home Page</a>
+            <a href="../index.html">Home Page</a>
         </nav>
     </header>
 

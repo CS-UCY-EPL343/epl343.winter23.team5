@@ -20,50 +20,50 @@
     <!-- Wrapper div to contain the registration form -->
     <div class="wrapper">
         <!-- Registration form -->
-        <form action="">
+        <form action="../includes/signup.inc.php" method="POST">
             <!-- Form heading -->
             <h1>Register</h1>
         
             <!-- Input field for First Name -->
             <div class="input-box">
-                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="First Name" name="fname" required>
                 <!-- Icon for the First Name input -->
                 <i class='bx bx-user'></i>
             </div>
         
             <!-- Input field for Last Name -->
             <div class="input-box">
-                <input type="text" placeholder="Last Name" required>
+                <input type="text" placeholder="Last Name" name="lname" required>
                 <!-- Icon for the Last Name input -->
                 <i class='bx bx-user'></i>
             </div>
         
             <!-- Input field for Phone -->
             <div class="input-box">
-                <input type="tel" placeholder="Phone" required>
+                <input type="tel" placeholder="Phone" name="phone" required>
             </div>
         
             <!-- Input field for Password -->
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" name="pwd" required>
                 <!-- Icon for the Password input -->
                 <i class='bx bx-lock-alt'></i>
             </div>
         
             <!-- Input field for Confirm Password -->
             <div class="input-box">
-                <input type="password" placeholder="Confirm Password" required>
+                <input type="password" placeholder="Confirm Password" name="pwdConf" required>
                 <!-- Icon for the Confirm Password input -->
                 <i class='bx bx-lock-alt'></i>
             </div>
         
             <!-- Input field for Key (secret) -->
             <div class="input-box">
-                <input type="text" placeholder="Key (secret)">
+                <input type="password" placeholder="Key (teacher only)" name="key">
             </div>
         
             <!-- Button to submit the form -->
-            <button type="submit" class="btn">CREATE ACCOUNT</button>
+            <button type="submit" class="btn" name="submit">CREATE ACCOUNT</button>
         
             <!-- Login link for users who already have an account -->
             <div class="login-register">

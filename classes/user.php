@@ -91,20 +91,20 @@ class User implements Serializable{
         // Check if registration info is emtpy.
         if($this-> emptyInput() == false){
             // echo "Empty input"
-            header("location: ../index.php?error=emtpyInput");
+            header("location: ../index.html?error=emtpyInput");
             exit();
         }
 
         // Check if input is valid.
         if($this-> invalidInput() == false){
             // echo "Empty input"
-            header("location: ../index.php?error=nameorphone");
+            header("location: ../index.html?error=nameorphone");
             exit();
         }
 
         if(!$this->confirm_pwd()){
             // echo "not the same"
-            header("location: ../index.php?error=pwdConfnotmatch");
+            header("location: ../index.html?error=pwdConfnotmatch");
             exit();
         }
 
@@ -117,7 +117,7 @@ class User implements Serializable{
 
         if($sqlResult == false){
             $sql = null;
-            header("location: ../index.php?error=stmtfailed");
+            header("location: ../index.html?error=stmtfailed");
             exit();
         }else{
 
@@ -127,7 +127,7 @@ class User implements Serializable{
                 // echo "user exists"
                 $sql = null;
                 $sqlResult->closeCursor();
-                header("location: ../index.php?error=userexists");
+                header("location: ../index.html?error=userexists");
                 exit();
             }else{
                 
@@ -142,14 +142,14 @@ class User implements Serializable{
 
                 if($sqlRegister == false){
                     $sql = null;
-                    header("location: ../index.php?error=stmtfailed");
+                    header("location: ../index.html?error=stmtfailed");
                     exit();
                 }
             }
         }
         // Close previous query
         $sqlResult->closeCursor();
-        header("location: ../index.php?error=none");
+        header("location: ../index.html?error=none");
   }
 ////////////////////////////////////end of register code//////////////////////////////////////
 
@@ -160,7 +160,7 @@ class User implements Serializable{
 
     // Check if login info is emtpy.
     if($this-> emptyLogin() == true){
-        header("location: ../index.php?error=emtpyInput");
+        header("location: ../index.html?error=emtpyInput");
         exit();
     }
 
@@ -176,7 +176,7 @@ class User implements Serializable{
     // If the query has a problem exit.
     if($sqlResult == false){
         $sql = null;
-        header("location: ../index.php?error=stmtfailed");
+        header("location: ../index.html?error=stmtfailed");
         exit();
     }else{
 
@@ -187,7 +187,7 @@ class User implements Serializable{
 
             // echo "user not exists"
             $sqlResult->closeCursor();
-            header("location: ../index.php?error=usernotexists");
+            header("location: ../index.html?error=usernotexists");
             exit();
 
         }else{
@@ -199,7 +199,7 @@ class User implements Serializable{
 
                 $sql = null;
                 $sqlResult->closeCursor();
-                header("location: ../index.php?error=wrongpassword");
+                header("location: ../index.html?error=wrongpassword");
                 exit();
 
             }elseif($checkPwd == true){
@@ -234,7 +234,7 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Teacher';
 
                         // Send to Teacher page.
-                        header("location: ../pages/teacherView.php");
+                        header("location: ../tempPages/teacherpage.html");
 
                     }elseif($result['UType'] == 0){
 
@@ -245,7 +245,7 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Student';
 
                         // Send to Student page.
-                        header("location: ../pages/studentView.php");
+                        header("location: ../tempPages/studentpage.php");
                         
                     }
                 }else{
@@ -253,7 +253,7 @@ class User implements Serializable{
                     // If not enrolled display error.
                     $sql = null;
                     $sqlResult->closeCursor();
-                    header("location: ../index.php?error=notenrolled");
+                    header("location: ../index.html?error=notenrolled");
 
                 }
                 exit();
@@ -277,7 +277,7 @@ class User implements Serializable{
         $sql = null;
         $sqlResult->closeCursor();
 
-        header("location: ../index.php");
+        header("location: ../index.html");
         exit();
   }
 

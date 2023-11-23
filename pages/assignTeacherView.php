@@ -13,7 +13,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Enrollment</title>
+    <title>Assign teacher</title>
     <style>
         table  td, table th{
         vertical-align:middle;
@@ -25,39 +25,26 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 <body>
     <div class="container my-4">
         <header class="d-flex justify-content-between my-4">
-            <h1>Requests for Enrollment</h1>
+            <h1>Classes</h1>
             <div>
                 <a href="../pages/adminView.php" class="btn btn-primary">Go Back</a>
             </div>
         </header>
         <?php
-        #session_start();
         // If deletion from databse was successfull.
-        if (isset($_SESSION["delete"])) {
+        if (isset($_SESSION["assign"])) {
         ?>
         <div class="alert alert-success">
             <?php 
-            echo $_SESSION["delete"];
+            echo "Deleted successfully!";
             ?>
         </div>
         <?php
-        unset($_SESSION["delete"]);
+        unset($_SESSION["assign"]);
         }
         ?>
         
-        <?php
-        // If enrollment was successfull.
-        if (isset($_SESSION["enroll"])) {
-        ?>
-        <div class="alert alert-success">
-            <?php 
-            echo $_SESSION["enroll"];
-            ?>
-        </div>
-        <?php
-        unset($_SESSION["enroll"]);
-        }
-        ?>
+        <h2>Assign tutor to class</h2>
 
         <table class="table table-bordered">
         <thead>
@@ -70,41 +57,40 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
         </thead>
         <tbody>
         
-        <?php
-        //Here we will call show students
-        //Connect to database using handler
-        require_once "../classes/DatabaseHandler.php";
-        $database = new Dbh();
-    
-        // Select the stored proc and exexute
-        $sql = "CALL get_unenrolled()";
-        $params = [];
-        $sqlResult = $database->executeQuery($sql, $params);
-        $result = $sqlResult->fetchAll(PDO::FETCH_ASSOC);
-        $i = 1;
+<?php
 
-        foreach($result as $row){
-            ?>
+  require_once "../classes/DatabaseHandler.php";
+  $database = new Dbh();
+
+  // Select sp and exec
+  $sql = "CALL fetch_teachers()";
+  $params = [];
+  $query = $database->executeQuery($sql, $params);
+
+  if ($query == false){
+    $query = null;
+    header("Location: ../includes/new_class.php?query_error");
+    exit();
+  }
+
+
+  $rows = $query->fetchALL(PDO::FETCH_ASSOC);
+  $i = 1;
+  foreach($rows as $row){
+  ?>
             <tr>
                 <td><?php echo $i ?></td>
                 <td><?php echo $row['Fname']; ?></td>
                 <td><?php echo $row['Lname']; ?></td>
                 <td><?php echo $row['username']; ?></td>
                 <td>
-                    <a href="../includes/enroll.inc.php?username=<?php echo $row['username']; ?>" class="btn btn-info">Enroll</a>
-                    <a href="../includes/noEnroll.inc.php?username=<?php echo $row['username']; ?>" class="btn btn-danger">Delete</a>
+                    <a href="../includes/assign_teacher.php?username=<?php echo $row['username']; ?>" class="btn btn-info">Assign</a>
                 </td>
             </tr>
-            <?php
-
-            $i = $i + 1;
-        }
-
-        // Clear query and close cursor
-        $sql = null;
-        $sqlResult->closeCursor();
-
-        ?>
+  <?php
+  $i++;
+}
+?>
         </tbody>
         </table>
     </div>

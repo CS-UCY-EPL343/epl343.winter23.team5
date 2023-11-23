@@ -19,10 +19,13 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
 <?php
     
 if(isset($_POST["edit_class"])){
+  /*
   $classes = $_SESSION['classes'];
   $class = $_POST['class'];
   $class_id = $classes[$class - 1]["CID"];
   $_SESSION["class_id"] = $class_id;
+  */
+  $class_id = $_SESSION["cid"];
 
   $name = $_POST["name"];
   $school_year = $_POST["school_year"];
@@ -63,7 +66,9 @@ if(isset($_POST["edit_class"])){
   $serialized = serialize($class_instance);
   
   // Display class details
-  $class_instance->display_class();
+  // $class_instance->display_class();
+  $_SESSION["edit"] = "set";
+  header("Location: ../pages/editClassView2.php");
 }
 ?>
 

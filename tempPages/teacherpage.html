@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link to external stylesheet -->
-    <link rel="stylesheet" href="teacherpage.css">
-    <script src="teacherpage.js"></script>
+    <link rel="stylesheet" href="../css/teacherpage.css">
+    <script src="../javascript/teacherpage.js"></script>
     <title>Teacher Page</title>
 </head>
 
@@ -18,7 +18,7 @@
         <!-- Navigation section -->
         <nav class="navigation">
             <a href="teacherpage.html">Teacher Page</a>
-            <a href="index.html">Logout</a>
+            <a href="../index.html">Logout</a>
         </nav>
     </header>
 
@@ -26,7 +26,10 @@
     <main>
         <h1>Insert Extra Lessons</h1>
         <!-- Button to insert extra lessons in the middle of the page -->
-        <button id="insertExtraLessons" onclick="goToInsertExtraLessonsPage()">Extra Lessons</button>
+        <button id="insertExtraLessons" onclick="location.href = 'insertExtraLessons.php';">Extra Lessons</button>
+        <button id="editclasses" onclick="location.href = '../pages/editClassView2.php';">Edit Classes</button>
+        <!-- <button id="editclasses" onclick="location.href = '../pages/editClassView.php';">Edit Classes</button>
+        -->
     </main>
 
     <footer id="main-footer">

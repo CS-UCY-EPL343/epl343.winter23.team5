@@ -14,7 +14,6 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
     <title>Admin Page</title>
     <link rel="stylesheet" href="../css/index.css" />
   </head>
-
   <body>
     <div class="div-1">
       <h1> Admin. </h1>
