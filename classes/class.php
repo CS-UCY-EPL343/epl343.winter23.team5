@@ -1,8 +1,10 @@
 <?php
+/*
 if (!isset($_SESSION['type']) || $_SESSION['type'] == "Student"){
   header("Location: ../index.php?error");
   exit("Not supposed to be here...");
 }
+*/
 
 include_once 'DatabaseHandler.php';
 
