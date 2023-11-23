@@ -53,5 +53,8 @@ DROP PROCEDURE IF EXISTS fetch_class_students;
 -- Drop fetch_other_students procedure
 DROP PROCEDURE IF EXISTS fetch_other_students;
 
--- Drop fetch_other_students procedure
+-- Drop get_enrolled procedure
 DROP PROCEDURE IF EXISTS get_enrolled;
+
+-- Drop fetch_next_years procedure
+DROP PROCEDURE IF EXISTS fetch_next_years;
