@@ -246,7 +246,7 @@ CREATE PROCEDURE delete_class(IN p_CID tinyint)
 
 BEGIN
     DELETE c 
-    FROM CLASS c 
+    FROM Class c 
     WHERE c.CID=p_CID;
 END //
 
