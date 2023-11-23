@@ -193,8 +193,7 @@ class _Class implements Serializable {
     $query->closeCursor();
   }
 
-  // Function to display class details
-  public function display_class() {
+  public static function binary_to_days($binary){
     $daysMap = [
       0 => "Monday",
       1 => "Tuesday",
@@ -205,7 +204,7 @@ class _Class implements Serializable {
       6 => "Sunday",
     ];
 
-    $week = $this->week;
+    $week = $binary;
 
     for($i = 0; $i < strlen($week); $i++){
       if ($week[$i] == "1"){
@@ -220,6 +219,14 @@ class _Class implements Serializable {
         break;
       }
     }
+    return [$week_day1, $week_day2];
+  }
+
+  // Function to display class details
+  public function display_class() {
+    $week = _Class::binary_to_days($this->week);
+    $week_day1 = $week[0];
+    $week_day2 = $week[1];
 
     $time1 = substr($this->day1, 0, 4) . "-" . substr($this->day1, 4, 8);
     $time2 = substr($this->day2, 0, 4) . "-" . substr($this->day2, 4, 8);

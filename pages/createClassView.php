@@ -13,6 +13,59 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create class</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #333333;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333333;
+}
+
+select,
+input,
+checkbox {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+</style>
 </head>
 
 <h1>Create class</h1>
