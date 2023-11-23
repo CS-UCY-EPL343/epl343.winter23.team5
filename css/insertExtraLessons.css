@@ -1,0 +1,248 @@
+/* Apply a global reset and set default styles for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Apply styles to the entire body of the page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Set a background color */
+}
+
+/* Style for the fixed header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px;
+    background: #2b7a78;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+/* Navigation styles for header */
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+/* Underline effect for navigation links */
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+/* Expand underline on hover */
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+/* Additional styles for the form */
+form {
+    width: 40%; /* Adjusted width of the form */
+    margin: 80px auto; /* Center the form, add margin to the top */
+    background-color: #fff; /* Set background color */
+    padding: 50px; /* Add padding to the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
+}
+
+/* Styling for form labels */
+form label {
+    display: block; /* Display labels as block elements for better spacing */
+    margin-bottom: 10px; /* Add margin below each label */
+}
+
+/* Styling for form input fields */
+form input {
+    width: 100%; /* Make input fields take up 100% of the width */
+    padding: 10px; /* Add padding to input fields */
+    margin-bottom: 15px; /* Add margin below each input field */
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
+
+/* Styling for the submit button */
+form input[type="submit"] {
+    background-color: #2b7a78;
+    color: #fff;
+    padding: 15px; /* Increased padding for the submit button */
+    font-size: 16px; /* Adjusted font size for the submit button */
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+form input[type="submit"]:hover {
+    background-color: #185d5a;
+}
+main {
+    margin-top: 20px; /* Adjusted margin to create space below the header */
+    margin-bottom: 400px; /* Increased margin to add more space at the bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Center the header within the main section */
+main h1 {
+    font-size: 30px; /* Increased font size */
+    font-weight: bold; /* Applied bold font weight */
+    margin-top: 20px; /* Adjusted margin for the header */
+    text-align: center; /* Center the text */
+}
+
+/*Footer CSS*/
+#main-footer {
+    /*
+    flex: 1;
+    position: relative;
+    top: 100%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #feffff;
+    */
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #feffff;
+    clear: both;
+}
+
+/*
+#main-footer #SocialMedia{
+    color: #17252A;
+    padding-left: 10px;
+    font-weight: 300px;
+    font-size: 15px;
+}
+*/
+
+#main-footer img{
+    /*
+    padding-right: 100px;
+    position: absolute;
+    bottom: 25x;
+    top: 25px;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    */
+    position: absolute;
+    bottom: 5%; /* Adjust as needed */
+    right: 7%;
+    max-width: 100%; /* Make the image responsive within its container */
+    max-height: 90%;
+}
+
+.footer-container {
+    flex: 1;
+    background-color: #3AAFA9;
+    height: 350px;
+    color: #feffff;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-container .footer-widget{
+    width: 30;
+    float: left;
+    color: #feffff;
+}
+
+h4{
+    padding-bottom: 10px;
+    line-height: 1em;
+    font-weight: 500;
+}
+
+.footer-widget h4{
+    color: #8ff0eb;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#main-footer .footer-widget #Telephone{
+    margin-right: 0 !important;
+}
+
+#main-footer .footer-widget #Email{
+    margin-left: 10px !important;
+    margin-bottom: 0;
+}
+
+#Address{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 15%; /* Change this value to position it at a different vertical position */
+    left: 210px;
+}
+
+#Email{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 20%; /* Change this value to position it at a different vertical position */
+    left: 200px;
+}
+
+#Telephone{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 15%; /* Change this value to position it at a different vertical position */
+    left: 600px;
+}
+
+#Facebook{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 100px; /* Change this value to position it at a different vertical position */
+    left: 600px;
+}
+
+.Details{
+    font-size: large;
+    float: left;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.Details a{
+    text-decoration: none;
+    color: #feffff;
+}
+
+.Details a:hover{
+    text-decoration: none;
+    font-weight: bold;
+    color: #39464c;
+}

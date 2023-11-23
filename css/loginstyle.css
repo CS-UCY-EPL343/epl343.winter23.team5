@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Set a background color and style for the body */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #DEF2F1;
+}
+
+/* Header styling */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px;
+    background: #2b7a78;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+/* Styling for the navigation links in the header */
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+/* Styling for the wrapper containing the login form */
+.wrapper {
+    width: 420px;
+    background: #2b7a78;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    overflow: hidden;
+}
+
+/* Center-align the form heading */
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+/* Styling for the input boxes */
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+/* Styling for the input field */
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #17252A;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #17252A;
+    padding: 20px 45px 20px 20px;
+}
+
+/* Styling for the placeholder text */
+.input-box input::placeholder {
+    color: #17252A;
+}
+
+/* Styling for the icon next to the input */
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+/* Styling for the login button */
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Styling for the login-register section */
+.login-register {
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+/* Styling for the login link */
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Styling for the login link on hover */
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+
+/*Footer CSS*/
+#main-footer {
+    /*
+    flex: 1;
+    position: relative;
+    top: 100%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #feffff;
+    */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #feffff;
+    clear: both;
+}
+
+/*
+#main-footer #SocialMedia{
+    color: #17252A;
+    padding-left: 10px;
+    font-weight: 300px;
+    font-size: 15px;
+}
+*/
+
+#main-footer img{
+    /*
+    padding-right: 100px;
+    position: absolute;
+    bottom: 25x;
+    top: 25px;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    */
+    position: absolute;
+    bottom: 5%; /* Adjust as needed */
+    right: 7%;
+    max-width: 100%; /* Make the image responsive within its container */
+    max-height: 90%;
+}
+
+.footer-container {
+    flex: 1;
+    background-color: #3AAFA9;
+    height: 350px;
+    color: #feffff;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-container .footer-widget{
+    width: 30;
+    float: left;
+    color: #feffff;
+}
+
+h4{
+    padding-bottom: 10px;
+    line-height: 1em;
+    font-weight: 500;
+}
+
+.footer-widget h4{
+    color: #8ff0eb;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#main-footer .footer-widget #Telephone{
+    margin-right: 0 !important;
+}
+
+#main-footer .footer-widget #Email{
+    margin-left: 10px !important;
+    margin-bottom: 0;
+}
+
+#Address{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 15%; /* Change this value to position it at a different vertical position */
+    left: 210px;
+}
+
+#Email{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 20%; /* Change this value to position it at a different vertical position */
+    left: 200px;
+}
+
+#Telephone{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    top: 15%; /* Change this value to position it at a different vertical position */
+    left: 600px;
+}
+
+#Facebook{
+    position: absolute;
+    font-size: large;
+    margin-left: 0px !important;
+    margin-top: 0;
+    bottom: 100px; /* Change this value to position it at a different vertical position */
+    left: 600px;
+}
+
+.Details{
+    font-size: large;
+    float: left;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.Details a{
+    text-decoration: none;
+    color: #feffff;
+}
+
+.Details a:hover{
+    text-decoration: none;
+    font-weight: bold;
+    color: #39464c;
+}

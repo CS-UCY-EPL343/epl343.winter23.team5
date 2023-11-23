@@ -1,7 +1,6 @@
 <?php
 // This is the file our data is sent in order to sign up.
 
-
 //Check if we accesed the page using the button not by URL
 if(isset($_POST["submit"]))
 {
@@ -11,9 +10,9 @@ if(isset($_POST["submit"]))
 
     // Instancite SignupContr class
     include "../classes/user.php";
-
+    
     $login = new User($fname=null, $lname=null, $pwd, $pwdConf=null, $phone=null, $type = null, $username);
-
+    
     // Running error handlers and user signup
     $login -> login();
 }
