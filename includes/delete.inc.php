@@ -6,7 +6,17 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] == "Admin"){
 }
 // This is the file our data is sent in order to delete account.
 
-//Check if we accesed the page using the button not by URL
+  include "../classes/user.php";
+
+  $zipUser = $_SESSION['user'];
+  $user = unserialize($zipUser);
+
+  $user -> deleteAccount();
+
+
+
+/*
+
 if(isset($_POST["delete"]))
 {
     // Instancite SignupContr class
@@ -20,4 +30,6 @@ if(isset($_POST["delete"]))
 }
 
 
+*/
 ?>
+
