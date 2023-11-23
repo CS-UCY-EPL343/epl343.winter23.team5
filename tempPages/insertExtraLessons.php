@@ -16,7 +16,7 @@
         <h2 class="logo">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
         <!-- Navigation section -->
         <nav class="navigation">
-            <a href="teacherpage.html">Teacher Page</a>
+            <a href="../pages/teacherView.php">Teacher Page</a>
             <a href="../index.html">Logout</a>
         </nav>
     </header>

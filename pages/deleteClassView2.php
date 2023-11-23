@@ -31,7 +31,6 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
             </div>
         </header>
         <?php
-        #session_start();
         // If deletion from databse was successfull.
         if (isset($_SESSION["delete"])) {
         ?>
@@ -80,6 +79,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 
         $i = 1;
         foreach ($rows as $row){
+          /*
           $obj = new _Class($row["CName"], $row["SchoolYear"], $row["CNumber"],
             $row["AvailableSeats"], $row["CDays"], $row["TimeForFirstDay"], $row["TimeForSecondDay"],
             $row["NextYears"], $row["CID"]);

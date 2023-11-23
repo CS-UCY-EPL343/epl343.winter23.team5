@@ -26,9 +26,6 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
     <div class="container my-4">
         <header class="d-flex justify-content-between my-4">
             <h1>Classes</h1>
-            <div>
-                <a href="../pages/adminView.php" class="btn btn-primary">Go Back</a>
-            </div>
         </header>
         <?php
         // If deletion from databse was successfull.

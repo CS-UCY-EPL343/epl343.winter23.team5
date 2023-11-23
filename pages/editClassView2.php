@@ -27,7 +27,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
         <header class="d-flex justify-content-between my-4">
             <h1>Classes</h1>
             <div>
-                <a href="../tempPages/teacherpage.html" class="btn btn-primary">Go Back</a>
+                <a href="../pages/teacherView.php" class="btn btn-primary">Go Back</a>
             </div>
         </header>
         <?php

@@ -52,7 +52,8 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
 
             <!-- This is the button for add extra lessons page page -->
             <li>
-              <a href="../pages/extraLessonView.php">
+             <!-- <a href="../pages/extraLessonView.php"> -->
+             <a href="../tempPages/insertExtraLessons.php">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

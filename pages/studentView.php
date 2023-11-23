@@ -53,7 +53,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] == "Admin"){
 
             <!-- This is the button for schedule page -->
             <li>
-              <a href="../pages/">
+              <a href="../tempPages/studentpage.php">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

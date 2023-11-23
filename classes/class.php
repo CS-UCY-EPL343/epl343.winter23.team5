@@ -99,8 +99,8 @@ class _Class implements Serializable {
 
     if ($query == false){
       $query = null;
-      //header("Location: ../includes/delete_class.php?query_error");
-      //exit();
+      header("Location: ../index.html?query_error");
+      exit();
     }
   }
 

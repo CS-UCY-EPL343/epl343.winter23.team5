@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
-  header("Location: ../index.php?error");
+  header("Location: ../index.php?error42");
   exit("Not supposed to be here...");
 }
 ?>
@@ -62,8 +62,6 @@ if(isset($_POST["create_class"])){
   header("Location: ../pages/assignTeacherView.php");
 }
 ?>
-
-
 
 </body>
 

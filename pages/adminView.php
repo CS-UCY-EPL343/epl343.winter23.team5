@@ -65,7 +65,8 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
               >
             </li>
             <li>
-              <a href="../pages/deleteClassView.php">
+              <!-- <a href="../pages/deleteClassView.php"> -->
+              <a href="../pages/deleteClassView2.php">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

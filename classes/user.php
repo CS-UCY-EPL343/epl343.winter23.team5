@@ -234,7 +234,8 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Teacher';
 
                         // Send to Teacher page.
-                        header("location: ../tempPages/teacherpage.html");
+                        //header("location: ../tempPages/teacherpage.html");
+                        header("location: ../pages/teacherView.php");
 
                     }elseif($result['UType'] == 0){
 
@@ -245,7 +246,8 @@ class User implements Serializable{
                         $_SESSION['type'] = 'Student';
 
                         // Send to Student page.
-                        header("location: ../tempPages/studentpage.php");
+                        //header("location: ../tempPages/studentpage.php");
+                        header("location: ../pages/studentView.php");
                         
                     }
                 }else{

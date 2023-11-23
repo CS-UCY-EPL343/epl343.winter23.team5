@@ -86,7 +86,7 @@
     <h2 class="logo">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
     <!-- Navigation section -->
     <nav class="navigation">
-      <a href="studentpage.html">Student Page</a>
+      <a href="../pages/studentView.php">Student Page</a>
       <a href="../index.html">Logout</a>
     </nav>
   </header>
