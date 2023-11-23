@@ -404,12 +404,40 @@ class Admin extends User {
     }else{
         session_start();
         $_SESSION["delete"] = $username." was deleted Successfully!";
+        // Clear query and close cursor.
+        $sql = null;
+        $sqlResult->closeCursor();
         header("Location:../pages/enrollView2.php");
     }
 
-    // Clear query and close cursor.
-    $sql = null;
-    $sqlResult->closeCursor();
+  }
+
+  public function removeAccount($username){
+
+    //Connect to database using handler
+    $database = new Dbh();
+    
+    // Check if user exists.
+    $sql = "CALL delete_user(:username)";
+    $params = [':username' => $username];
+    $sqlResult = $database->executeQuery($sql, $params);
+    
+    // Check if error occured w/ stmt
+    if($sqlResult == false){
+        $sql = null;
+        $sqlResult->closeCursor();
+        header("location: ../pages/deleteUserView.php?error=stmtfailed");
+        exit();
+    }else{
+        session_start();
+        $_SESSION["delete"] = $username." was deleted Successfully!";
+        // Clear query and close cursor.
+        $sql = null;
+        $sqlResult->closeCursor();
+        header("Location:../pages/deleteUserView.php");
+    }
+
+
 
   }
 }
