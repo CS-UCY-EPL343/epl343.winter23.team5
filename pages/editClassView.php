@@ -29,7 +29,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher") {
         <h2 class="logo" style = "color: #FFFFFF;">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
         <!-- Navigation section -->
         <nav class="navigation">
-            <a href="../tempPages/teacherpage.html">Teacher Page</a>
+            <a href="teacherView.php">Teacher Page</a>
             <a href="../index.html">Logout</a>
         </nav>
     </header>

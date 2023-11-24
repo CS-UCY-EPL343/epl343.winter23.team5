@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
+if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher") {
   header("Location: ../index.php?error");
   exit("Not supposed to be here...");
 }
@@ -8,145 +8,219 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Teacher"){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Assign students</title>
-    <style>
-        table  td, table th{
-        vertical-align:middle;
-        text-align:right;
-        padding:20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/header_footer.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Assign students</title>
+  <style>
+    table td,
+    table th {
+      vertical-align: middle;
+      text-align: right;
+      padding: 20px;
+    }
+  </style>
 </head>
-<body>
-    <div class="container my-4">
-        <header class="d-flex justify-content-between my-4">
-            <h1>Assign students</h1>
-            <div>
-                <a href="../pages/editClassView2.php" class="btn btn-primary">Go Back</a>
+
+<body class="Mybody">
+  <header>
+    <!-- Logo of the institution -->
+    <h2 class="logo" style="color: #FFFFFF;">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
+    <!-- Navigation section -->
+    <nav class="navigation">
+      <a href="teacherView.php">Teacher Page</a>
+      <a href="../index.html">Logout</a>
+    </nav>
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container my-4">
+
+    <h1>Assign students</h1>
+
+    <?php
+    // If deletion from databse was successfull.
+    if (isset($_SESSION["assign"])) {
+      ?>
+      <div class="alert alert-success">
+        <?php
+        echo $_SESSION["assign"];
+        ?>
+      </div>
+      <?php
+      unset($_SESSION["assign"]);
+    }
+    ?>
+
+    <h3>Current students</h3>
+    <table class="table table-bordered" style="border-color: black;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <?php
+        require_once '../classes/DatabaseHandler.php';
+
+        $class_id = $_GET["cid"];
+        $_SESSION["cid"] = $class_id;
+
+        $database = new Dbh();
+        $sql = "CALL fetch_class_students(:cid)";
+        $params = [":cid" => $class_id];
+
+        $query = $database->executeQuery($sql, $params);
+        if ($query == false) {
+          $query = null;
+          header("Location: assignStudents.php?query_error");
+          exit();
+        }
+
+        $rows = $query->fetchALL(PDO::FETCH_ASSOC);
+
+        $i = 1;
+        foreach ($rows as $row) {
+          ?>
+          <tr>
+            <td>
+              <?php echo $i ?>
+            </td>
+            <td>
+              <?php echo $row['Fname']; ?>
+            </td>
+            <td>
+              <?php echo $row['Lname']; ?>
+            </td>
+            <td>
+              <?php echo $row['username']; ?>
+            </td>
+          </tr>
+          <?php
+          $i++;
+        }
+
+        // Clear query and close cursor
+        $query->closeCursor();
+
+        ?>
+      </tbody>
+    </table>
+
+    <h3>Other students</h3>
+
+    <table class="table table-bordered" style="border-color: black;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        require_once '../classes/DatabaseHandler.php';
+
+        $class_id = $_SESSION["cid"];
+
+        $database = new Dbh();
+        $sql = "CALL fetch_other_students(:cid)";
+        $params = [":cid" => $class_id];
+
+        $query = $database->executeQuery($sql, $params);
+        if ($query == false) {
+          $query = null;
+          header("Location: assignStudents.php?query_error2");
+          exit();
+        }
+        $rows = $query->fetchALL(PDO::FETCH_ASSOC);
+
+        $i = 1;
+        foreach ($rows as $row) {
+          ?>
+          <tr>
+            <td>
+              <?php echo $i ?>
+            </td>
+            <td>
+              <?php echo $row['Fname']; ?>
+            </td>
+            <td>
+              <?php echo $row['Lname']; ?>
+            </td>
+            <td>
+              <?php echo $row['username']; ?>
+            </td>
+            <td>
+              <a href="../includes/assign_students.php?username=<?php echo $row['username']; ?>"
+                class="btn btn-info">Assign</a>
+            </td>
+          </tr>
+          <?php
+          $i++;
+        }
+        $query->closeCursor();
+
+        ?>
+
+      </tbody>
+    </table>
+
+  </div>
+  <footer id="main-footer">
+    <div class="footer-container">
+      <div id="footer-widgets" class="clearfix">
+        <div class="footer-widget">
+          <div id="Address">
+            <h4 class="title">Διεύθυνση</h4>
+            <div class="Details">
+              Καραβά 4 & Κερύνειας 93
+              <br>
+              Τ.Κ. 2115, Λευκωσία
+              <br>
+              Κύπρος
             </div>
-        </header>
-<?php
-// If deletion from databse was successfull.
-if (isset($_SESSION["assign"])) {
-?>
-        <div class="alert alert-success">
-<?php 
-  echo $_SESSION["assign"];
-?>
+          </div>
         </div>
-<?php
-  unset($_SESSION["assign"]);
-}
-?>
+        <div class="footer-widget">
+          <div id="Telephone">
+            <h4 class="title">Τηλέφωνο</h4>
+            <div class="Details">+357 99865685</div>
+          </div>
+        </div>
+        <div class="footer-widget">
+          <div id="Email">
+            <h4 class="title">Ηλεκτρονικό Ταχυδρομείο</h4>
+            <div class="Details">katysp81@hotmail.com</div>
+          </div>
+        </div>
+        <div class="footer-widget">
+          <div id="Facebook">
+            <h4 class="title">Facebook Page</h4>
+            <div class="Details"><a href="https://www.facebook.com/idiotikofrontistirioDimitrisEllinas">Idiotiko
+                Frontistirio D.Ellinas </a></div>
+          </div>
 
-        <h3>Current students</h3>
-        <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Username</th>
-            </tr>
-        </thead>
-        <tbody>
-
-<?php
-require_once '../classes/DatabaseHandler.php';
-
-$class_id = $_GET["cid"];
-$_SESSION["cid"] = $class_id;
-
-$database = new Dbh();
-$sql = "CALL fetch_class_students(:cid)";
-$params = [":cid" => $class_id];
-
-$query = $database->executeQuery($sql, $params);
-if ($query == false){
-  $query = null;
-  header("Location: assignStudents.php?query_error");
-  exit();
-}
-
-$rows = $query->fetchALL(PDO::FETCH_ASSOC);
-
-$i = 1;
-foreach($rows as $row){
-?>
-            <tr>
-                <td><?php echo $i ?></td>
-                <td><?php echo $row['Fname']; ?></td>
-                <td><?php echo $row['Lname']; ?></td>
-                <td><?php echo $row['username']; ?></td>
-            </tr>
-<?php
-  $i++;
-}
-
-// Clear query and close cursor
-$query->closeCursor();
-
-?>
-        </tbody>
-        </table>
-
-        <h3>Other students</h3>
-
-        <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Username</th>
-            </tr>
-        </thead>
-        <tbody>
-<?php
-require_once '../classes/DatabaseHandler.php';
-
-$class_id = $_SESSION["cid"];
-
-$database = new Dbh();
-$sql = "CALL fetch_other_students(:cid)";
-$params = [":cid" => $class_id];
-
-$query = $database->executeQuery($sql, $params);
-if ($query == false){
-  $query = null;
-  header("Location: assignStudents.php?query_error2");
-  exit();
-}
-$rows = $query->fetchALL(PDO::FETCH_ASSOC);
-
-$i = 1;
-foreach($rows as $row){
-?>
-            <tr>
-                <td><?php echo $i ?></td>
-                <td><?php echo $row['Fname']; ?></td>
-                <td><?php echo $row['Lname']; ?></td>
-                <td><?php echo $row['username']; ?></td>
-                <td>
-                  <a href="../includes/assign_students.php?username=<?php echo $row['username']; ?>" class="btn btn-info">Assign</a>
-                </td>
-            </tr>
-<?php
-  $i++;
-}
-$query->closeCursor();
-
-?>
-
-        </tbody>
-        </table>
-
+        </div>
+      </div>
+      <img
+        src="https://scontent.fnic2-2.fna.fbcdn.net/v/t39.30808-6/305064635_488074959992715_3372216840304727567_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=y0S9bs8t0fEAX9psX15&_nc_ht=scontent.fnic2-2.fna&oh=00_AfDxJvCQFMdW_jrwyZHHtUX2FqNlfLpjcC0UTe2dUV62PQ&oe=65615F29">
     </div>
-
+  </footer>
 </body>
+
 </html>
