@@ -20,6 +20,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin"){
 <?php
 
 if(isset($_POST["create_class"])){
+  
   // Retrieve form data using $_POST
   $name = $_POST["name"];
   $school_year = $_POST["school_year"];
