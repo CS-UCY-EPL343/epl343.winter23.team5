@@ -8,20 +8,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.getElementsByTagName("html")[0].className += " js";</script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="../css/header_footer.css" />
   <title>Schedule Template | CodyHouse</title>
 </head>
-<body>
-    <!-- Logo of the institution -->
-    <h2 class="logo" style = "color: #FFFFFF;">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
-    <!-- Navigation section -->
-    <nav class="navigation">
-      <a href="../tempPages/teacherpage.html">Teacher Page</a>
-      <a href="../index.html">Logout</a>
-    </nav>
-  <header class="cd-main-header text-center flex flex-column flex-center">
+<body style="background-color: #f3f0e7 ;">
+<header>
+        <!-- Logo of the institution -->
+        <h2 class="logo" style="color: #FFFFFF;">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
+        <!-- Navigation section -->
+        <nav class="navigation">
+    
+            <a href="../index.html">Logout</a>
+        </nav>
+    </header>
     <br>
-    <h1 class="text-xl">Next Year's Schedule</h1>
-  </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+    <h1 class="text-xl" style="margin-left: 40%;">Next Year's Schedule</h1>
+  
 
     <form action="" method="POST" style="margin-left: 290px;">
       <label for="school_year">School Year:</label>
@@ -324,42 +332,5 @@ $query->closeCursor();
   <script src="assets/js/main.js"></script>
 </body>
 
-<footer id="main-footer">
-        <div class="footer-container">
-            <div id="footer-widgets" class="clearfix">
-                <div class="footer-widget">
-                    <div id="Address">
-                        <h4 class="title">Διεύθυνση</h4>
-                        <div class="Details">
-                            Καραβά 4 & Κερύνειας 93
-                            <br>
-                            Τ.Κ. 2115, Λευκωσία
-                            <br>
-                            Κύπρος
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-widget">
-                    <div id="Telephone">
-                        <h4 class="title">Τηλέφωνο</h4>
-                        <div class="Details">+357 99865685</div>
-                    </div>
-                </div>
-                <div class="footer-widget">
-                    <div id="Email">
-                        <h4 class="title">Ηλεκτρονικό Ταχυδρομείο</h4>
-                        <div class="Details">katysp81@hotmail.com</div>
-                    </div>
-                </div>
-                <div class="footer-widget">
-                    <div id="Facebook">
-                        <h4 class="title">Facebook Page</h4>
-                        <div class="Details"><a href="https://www.facebook.com/idiotikofrontistirioDimitrisEllinas">Idiotiko Frontistirio D.Ellinas </a></div>
-                    </div>
 
-                </div>
-            </div>
-            <img src="https://scontent.fnic2-2.fna.fbcdn.net/v/t39.30808-6/305064635_488074959992715_3372216840304727567_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=y0S9bs8t0fEAX9psX15&_nc_ht=scontent.fnic2-2.fna&oh=00_AfDxJvCQFMdW_jrwyZHHtUX2FqNlfLpjcC0UTe2dUV62PQ&oe=65615F29">
-        </div>
-    </footer>
 </html>
