@@ -6,6 +6,7 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,10 +16,40 @@ if (!isset($_SESSION['type']) || $_SESSION['type'] !== "Admin") {
   <title>Admin Page</title>
   <link rel="stylesheet" href="../css/index.css" />
   <link rel="stylesheet" href="../css/header_footer.css" />
+  
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+      margin: 0;
+    }
+
+    .div-1 {
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0; /* Remove default margin for h1 */
+    }
+  </style>
 </head>
+<header>
+    <!-- Logo of the institution -->
+    <h2 class="logo">ΙΔΙΩΤΙΚΟ ΦΡΟΝΤΙΣΤΗΡΙΟ Δ.ΕΛΛΗΝΑΣ</h2>
+    <!-- Navigation section -->
+    <nav class="navigation">
+      <a href="../pages/adminView.php">Admin Page</a>
+      <a href="../index.html">Logout</a><br>
+    </nav>
+  </header>
 
 <body>
+  
   <div class="div-1">
+  <br>
     <h1> Admin. </h1>
   </div>
   <div class="demo-page">
